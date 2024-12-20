@@ -1,0 +1,236 @@
+[
+{"name": "Richard Rodgers",
+"age": 59,
+"category": "Composer",
+"year": 1962,
+"span": 16,
+"emmy": 1962,
+"grammy": 1960,
+"oscar": 1946,
+"tony": 1950
+},
+
+{
+"name": "Helen Hayes",
+"age": 76,
+"category": "Actor",
+"year": 1977,
+"span": 45,
+"emmy": 1953,
+"grammy": 1977,
+"oscar": 1932,
+"tony": 1946
+},
+
+{
+"name": "Rita Moreno",
+"age": 45,
+"category": "Actor",
+"year": 1977,
+"span": 15,
+"emmy": 1977,
+"grammy": 1973,
+"oscar": 1962,
+"tony": 1975
+},
+
+{
+"name": "John Gielgud",
+"age": 87,
+"category": "Actor",
+"year": 1991,
+"span": 29,
+"emmy": 1991,
+"grammy": 1979,
+"oscar": 1982,
+"tony": 1961
+},
+{
+"name": "Audrey Hepburn",
+"age": 63,
+"category": "Actor",
+"year": 1994,
+"span": 40,
+"emmy": 1993,
+"grammy": 1994,
+"oscar": 1954,
+"tony": 1954
+},
+{
+"name": "Marvin Hamlisch",
+"age": 51,
+"category": "Composer",
+"year": 1995,
+"span": 21,
+"emmy": 1995,
+"grammy": 1974,
+"oscar": 1974,
+"tony": 1976
+},
+{
+"name": "Jonathan Tunick",
+"age": 59,
+"category": "Composer",
+"year": 1997,
+"span": 19,
+"emmy": 1982,
+"grammy": 1988,
+"oscar": 1978,
+"tony": 1997
+},
+{
+"name": "Mel Brooks",
+"age": 74,
+"category": "Songwriter",
+"year": 2001,
+"span": 34,
+"emmy": 1967,
+"grammy": 1998,
+"oscar": 1969,
+"tony": 2001
+},
+{
+"name": "Mike Nichols",
+"age": 69,
+"category": "Director",
+"year": 2001,
+"span": 40,
+"emmy": 2001,
+"grammy": 1961,
+"oscar": 1968,
+"tony": 1964
+},
+{
+"name": "Whoopi Goldberg",
+"age": 46,
+"category": "Actor",
+"year": 2002,
+"span": 16,
+"emmy": 2002,
+"grammy": 1986,
+"oscar": 1991,
+"tony": 2002
+},
+{
+"name": "Scott Rudin",
+"age": 53,
+"category": "Producer",
+"year": 2012,
+"span": 28,
+"emmy": 1984,
+"grammy": 2012,
+"oscar": 2008,
+"tony": 1994
+},
+{
+"name": "Robert Lopez",
+"age": 39,
+"category": "Songwriter",
+"year": 2014,
+"span": 10,
+"emmy": 2008,
+"grammy": 2012,
+"oscar": 2014,
+"tony": 2004,
+},
+{
+"name": "Andrew Lloyd Webber",
+"age": 70,
+"category": "Composer",
+"year": 2018,
+"span": 38,
+"emmy": 2018,
+"grammy": 1980,
+"oscar": 1997,
+"tony": 1980
+},
+{
+"name": "Tim Rice",
+"age": 74,
+"category": "Songwriter",
+"year": 2018,
+"span": 38,
+"emmy": 2018,
+"grammy": 1980,
+"oscar": 1993,
+"tony": 1980
+},
+{
+"name": "John Legend",
+"age": 39,
+"category": "Singer",
+"year": 2018,
+"span": 12,
+"emmy": 2018,
+"grammy": 2006,
+"oscar": 2015,
+"tony": 2017
+},
+{
+"name": "Alan Menken",
+"age": 70,
+"category": "Composer",
+"year": 2020,
+"span": 30,
+"emmy": 2020,
+"grammy": 1991,
+"oscar": 1990,
+"tony": 2012
+},
+{
+"name": "Jennifer Hudson",
+"age": 40,
+"category": "Singer",
+"year": 2022,
+"span": 15,
+"emmy": 2021,
+"grammy": 2009,
+"oscar": 2007,
+"tony": 2022
+},
+{
+"name": "Viola Davis",
+"age": 57,
+"category": "Actor",
+"year": 2023,
+"span": 22,
+"emmy": 2015,
+"grammy": 2023,
+"oscar": 2017,
+"tony": 2001
+},
+
+{
+"name": "Elton John",
+"age": 76,
+"category": "Singer",
+"year": 2024,
+"span": 37,
+"emmy": 2024,
+"grammy": 1987,
+"oscar": 1995,
+"tony": 2000
+},
+{
+"name": "Benji Pasek",
+"age": 29,
+"category": "Composer",
+"year": 2024,
+"span": 7,
+"emmy": 2024,
+"grammy": 2018,
+"oscar": 2017,
+"tony": 2017
+},
+{
+"name": "Justin Paul",
+"age": 39,
+"category": "Composer",
+"year": 2024,
+"span": 7,
+"emmy": 2024,
+"grammy": 2018,
+"oscar": 2017,
+"tony": 2017,
+}
+]
