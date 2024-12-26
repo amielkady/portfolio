@@ -7,7 +7,8 @@
 "emmy": 1962,
 "grammy": 1960,
 "oscar": 1946,
-"tony": 1950
+"tony": 1950,
+"img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rodgers.jpg/800px-Rodgers.jpg"
 },
 
 {
@@ -19,7 +20,8 @@
 "emmy": 1953,
 "grammy": 1977,
 "oscar": 1932,
-"tony": 1946
+"tony": 1946,
+"img": "https://media.gettyimages.com/id/517352294/photo/helen-hayes.webp?s=612x612&w=gi&k=20&c=_ZAdHEjO0NW0tz1_EHa7BsPfprOGiSAdUtl7G0mO7BU="
 },
 
 {
@@ -31,7 +33,8 @@
 "emmy": 1977,
 "grammy": 1973,
 "oscar": 1962,
-"tony": 1975
+"tony": 1975,
+"img": "https://cdn.britannica.com/21/227421-050-272118E7/Puerto-Rican-born-American-actress-dancer-and-singer-Rita-Moreno-holds-her-Oscar-for-1961-Best-Supporting-Actress-1962.jpg"
 },
 
 {
@@ -43,7 +46,8 @@
 "emmy": 1991,
 "grammy": 1979,
 "oscar": 1982,
-"tony": 1961
+"tony": 1961,
+"img": "https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/famed-actor-sir-john-gielgud-bettmann.jpg"
 },
 {
 "name": "Audrey Hepburn",
@@ -54,7 +58,8 @@
 "emmy": 1993,
 "grammy": 1994,
 "oscar": 1954,
-"tony": 1954
+"tony": 1954,
+"img": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Audrey_Hepburn_1956om_%283x4_cropped%29.jpg"
 },
 {
 "name": "Marvin Hamlisch",
@@ -65,7 +70,8 @@
 "emmy": 1995,
 "grammy": 1974,
 "oscar": 1974,
-"tony": 1976
+"tony": 1976,
+"img": "https://s.hdnux.com/photos/51/75/14/10998561/6/ratio2x3_960.webp"
 },
 {
 "name": "Jonathan Tunick",
@@ -76,7 +82,8 @@
 "emmy": 1982,
 "grammy": 1988,
 "oscar": 1978,
-"tony": 1997
+"tony": 1997,
+"img": "https://assets.playbill.com/editorial/_defaultEnhancement/6ad3548538cd0e5c201a9a1c9da2c6e8-tunick1.jpg"
 },
 {
 "name": "Mel Brooks",
@@ -87,7 +94,8 @@
 "emmy": 1967,
 "grammy": 1998,
 "oscar": 1969,
-"tony": 2001
+"tony": 2001,
+"img": "https://www.mtishows.com.au/sites/default/files/styles/square_thumb_focal_point/public/profile/mel_brooks_bio_.jpeg?itok=8aR626qH"
 },
 {
 "name": "Mike Nichols",
@@ -98,7 +106,8 @@
 "emmy": 2001,
 "grammy": 1961,
 "oscar": 1968,
-"tony": 1964
+"tony": 1964,
+"img": "https://media.vanityfair.com/photos/6019ab5a5da52bbb0485f402/master/w_1920,c_limit/Mike-Nichols-Opener.jpg"
 },
 {
 "name": "Whoopi Goldberg",
@@ -109,7 +118,8 @@
 "emmy": 2002,
 "grammy": 1986,
 "oscar": 1991,
-"tony": 2002
+"tony": 2002,
+"img": "https://www.usmagazine.com/wp-content/uploads/2024/04/Whoopi-Goldberg-Bio-Page.jpg?w=800&h=1421&crop=1&quality=78&strip=all"
 },
 {
 "name": "Scott Rudin",
@@ -120,7 +130,8 @@
 "emmy": 1984,
 "grammy": 2012,
 "oscar": 2008,
-"tony": 1994
+"tony": 1994,
+"img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Scott_Rudin.webp/450px-Scott_Rudin.webp.png"
 },
 {
 "name": "Robert Lopez",
@@ -131,7 +142,8 @@
 "emmy": 2008,
 "grammy": 2012,
 "oscar": 2014,
-"tony": 2004
+"tony": 2004,
+"img": "https://static.tvtropes.org/pmwiki/pub/images/robert_lopez.png"
 },
 {
 "name": "Andrew Lloyd Webber",
@@ -142,7 +154,8 @@
 "emmy": 2018,
 "grammy": 1980,
 "oscar": 1997,
-"tony": 1980
+"tony": 1980,
+"img": "https://hips.hearstapps.com/hmg-prod/images/gettyimages-971263866.jpg?resize=1200:*"
 },
 {
 "name": "Tim Rice",
@@ -153,7 +166,8 @@
 "emmy": 2018,
 "grammy": 1980,
 "oscar": 1993,
-"tony": 1980
+"tony": 1980,
+"img": "https://unitedmusicals.de/wp-content/uploads/2014/04/Rice_Tim-482x600.jpg"
 },
 {
 "name": "John Legend",
@@ -164,7 +178,8 @@
 "emmy": 2018,
 "grammy": 2006,
 "oscar": 2015,
-"tony": 2017
+"tony": 2017,
+"img": "https://publish.purewow.net/wp-content/uploads/sites/2/2023/11/john-legend-net-worth.jpg?fit=2050%2C1100"
 },
 {
 "name": "Alan Menken",
@@ -175,7 +190,8 @@
 "emmy": 2020,
 "grammy": 1991,
 "oscar": 1990,
-"tony": 2012
+"tony": 2012,
+"img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Alan_Menken_2013_%28cropped%29.jpg/800px-Alan_Menken_2013_%28cropped%29.jpg"
 },
 {
 "name": "Jennifer Hudson",
@@ -186,7 +202,8 @@
 "emmy": 2021,
 "grammy": 2009,
 "oscar": 2007,
-"tony": 2022
+"tony": 2022,
+"img": "https://scontent.fcai20-2.fna.fbcdn.net/v/t39.30808-6/458651225_1079928656826675_2458235472000591754_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFdsVHDR-5Mylb_w7JtGthkYqJX1crCnsJiolfVysKewli2VLh-Xs4dZO6jnp_dDPE&_nc_ohc=dV5N1c5J7N0Q7kNvgF9zH0X&_nc_oc=AdjsvaBSnkTjzcs937iqNlMcS4Eih5sm-0K14a2yUenOJKdzaGgdvg6oGbGzDLLcjOk&_nc_zt=23&_nc_ht=scontent.fcai20-2.fna&_nc_gid=AHNsq7s3zh4wTuLE_uh4V-O&oh=00_AYALccUaLawtvUODo0yS8F-FSsWminqBDhSwW79IWfxngw&oe=67731903"
 },
 {
 "name": "Viola Davis",
@@ -197,7 +214,8 @@
 "emmy": 2015,
 "grammy": 2023,
 "oscar": 2017,
-"tony": 2001
+"tony": 2001,
+"img": "https://www.essence.com/wp-content/uploads/2021/04/Screen-Shot-2021-04-13-at-7.27.22-AM.png?width=800"
 },
 
 {
@@ -209,7 +227,8 @@
 "emmy": 2024,
 "grammy": 1987,
 "oscar": 1995,
-"tony": 2000
+"tony": 2000,
+"img": "https://www.hola.com/horizon/landscape/817496714d99-sir-elton-john-performs-at-hyde-park.jpg?im=Resize=(960),type=downsize"
 },
 {
 "name": "Benji Pasek",
@@ -220,7 +239,8 @@
 "emmy": 2024,
 "grammy": 2018,
 "oscar": 2017,
-"tony": 2017
+"tony": 2017,
+"img": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Pasek_and_Paul_-_Benj_Pasek_%28cropped%29.JPG"
 },
 {
 "name": "Justin Paul",
@@ -231,6 +251,7 @@
 "emmy": 2024,
 "grammy": 2018,
 "oscar": 2017,
-"tony": 2017
+"tony": 2017,
+"img": "https://www.billboard.com/wp-content/uploads/media/justin-paul-feb-5-2018-billboard-1548.jpg?w=942&h=623&crop=1"
 }
 ]
