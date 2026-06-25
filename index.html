@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Portfolio</title>
-
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 
 /* =========================
@@ -51,16 +51,16 @@ body{
    WELCOME GIF
 ========================= */
 
-.welcomeGif{
+.welcomeVideo{
 
     max-width:75vw;
     max-height:75vh;
 
     object-fit:contain;
 
-    user-select:none;
-}
+    display: block;
 
+}
 /* =========================
    NAME CARD
 ========================= */
@@ -150,7 +150,7 @@ body{
 
     transition:.45s ease;
 
-    background-image:url("about-background.jpg");
+    background-image:url("about-me-bg.jpg");
 
     background-size:cover;
     background-position:center;
@@ -197,16 +197,22 @@ body{
 
     margin:auto;
 
-    color:#222;
+    font-family: 'Caveat', cursive;
 
-    line-height:1.9;
+    color:#565254;
 
-    font-size:1.05rem;
+    line-height:1.8;
+
+    font-size:2rem;
+
+    font-weight:500;
+
+    letter-spacing:0.5px;
 }
 
 .aboutText p{
 
-    margin-bottom:28px;
+    margin-bottom:30px;
 }
 
 /* =========================
@@ -271,20 +277,28 @@ body{
 
     <!-- REPLACE WITH YOUR GIF -->
 
-    <img
-        src="welcome-to-my-portfolio.gif"
-        class="welcomeGif"
-        alt="Welcome"
-    >
+    <video
+    id="welcomeVideo"
+    class="welcomeVideo"
+    autoplay
+    muted
+    playsinline
+>
+    <source src="welcome.mp4" type="video/mp4">
+</video>
 
     <!-- REPLACE WITH YOUR NAME CARD IMAGE -->
 
     <div class="profileCard" id="openAbout">
-
-        <img
-            src="Untitled design (1).gif"
-            alt="Profile Card"
-        >
+   <video
+    id="aboutMe"
+    class="AboutMe"
+    autoplay
+    muted
+    playsinline
+>
+    <source src="about-me.mp4" type="video/mp4">
+</video>
 
     </div>
 
@@ -408,6 +422,29 @@ window.addEventListener("load", () => {
 
 });
 
+   const welcomeVideo =
+    document.getElementById("welcomeVideo");
+
+welcomeVideo.addEventListener("ended", () => {
+
+    welcomeVideo.pause();
+
+    welcomeVideo.currentTime =
+        welcomeVideo.duration;
+
+});
+   
+const aboutMeVideo =
+    document.getElementById("aboutMe");
+
+welcomeVideo.addEventListener("ended", () => {
+
+    welcomeVideo.pause();
+
+    welcomeVideo.currentTime =
+        welcomeVideo.duration;
+
+});
 </script>
 
 </body>
