@@ -741,6 +741,21 @@ welcomeVideo.addEventListener("ended", () => {
 
 });
 
+      SLIDE 1 — FREEZE VIDEO ON LAST FRAME
+========================= */
+
+const welcomeVideo =
+    document.getElementById("DuckyPage");
+
+DuckyPage.addEventListener("ended", () => {
+
+    DuckyPage.pause();
+
+    DuckyPage.currentTime =
+        DuckyPage.duration;
+
+});
+
 /* =========================
    SLIDE 3 — TYPEWRITER HEADING
    Types once on page load.
