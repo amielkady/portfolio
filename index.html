@@ -445,18 +445,6 @@ body{
 
 .duckyFace{
 
-    /* Bumped again — but there's a real ceiling here: at some
-       point growing this box further will make it overlap the
-       circles, since they're a fixed distance from the center.
-       If Duckie is STILL visually small at this size, the PNG
-       almost certainly has transparent padding baked around
-       the artwork itself — open it in any image editor, crop
-       tight to the duck's actual edges, re-export, and swap
-       the file. That fixes it permanently; this percentage
-       can only inflate the box, not the art inside it. */
-
-    width:68%;
-    height:68%;
 
     object-fit:contain;
 
@@ -505,7 +493,7 @@ body{
 .navCircle span{
 
     font-family:"CanvaCrayon", "Kalam", sans-serif;
-    font-size:15px;
+    font-size:20px;
     line-height:1.25;
 
     color:#efedee;
