@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   YOUR FONTS (page 3)
+   Drop the actual font files in
+   a /fonts folder next to this
+   page, then point src at them.
+   Until then, the fallback fonts
+   (Caveat / Kalam) keep the
+   handwritten look in preview.
+========================= */
+
+@font-face{
+    font-family:"Goodfriend";
+    src:url("fonts/Goodfriend.woff2") format("woff2"),
+        url("fonts/Goodfriend.woff") format("woff");
+    font-display:swap;
+}
+
+@font-face{
+    font-family:"CanvaCrayon";
+    src:url("fonts/CanvaCrayon.woff2") format("woff2"),
+        url("fonts/CanvaCrayon.woff") format("woff");
+    font-display:swap;
+}
+
+</style>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:"Segoe UI", sans-serif;
+    background:#f1eff0;
+}
+
+/* =========================
+   SLIDE CONTAINER
+   Holds all three pages and
+   handles the scroll-snap
+   "slideshow" behavior.
+========================= */
+
+#slides{
+
+    width:100%;
+    height:100vh;
+
+    overflow-y:scroll;
+    scroll-snap-type:y mandatory;
+    scroll-behavior:smooth;
+
+}
+
+.slide{
+
+    width:100%;
+    height:100vh;
+
+    scroll-snap-align:start;
+
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+
+}
+
+/* =========================
+   PAGE ARROWS
+   Shared by all three slides.
+   Up arrow → previous slide,
+   down arrow → next slide.
+   #interestsPage overrides the
+   color further down, since its
+   ink tone is slightly different.
+========================= */
+
+.pageArrow{
+
+    position:absolute;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:none;
+    border:none;
+
+    cursor:pointer;
+
+    padding:12px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:5;
+
+    text-decoration:none;
+
+}
+
+.pageArrow--up{ top:24px; }
+.pageArrow--down{ bottom:24px; }
+
+.pageArrow svg{
+
+    width:34px;
+    height:34px;
+
+    animation:arrowGlow 2.2s ease-in-out infinite;
+
+}
+
+.pageArrow--down svg{
+
+    animation:
+        arrowGlow 2.2s ease-in-out infinite,
+        arrowBobDown 2.2s ease-in-out infinite;
+
+}
+
+.pageArrow--up svg{
+
+    animation:
+        arrowGlow 2.2s ease-in-out infinite,
+        arrowBobUp 2.2s ease-in-out infinite;
+
+}
+
+.pageArrow path{
+
+    stroke:#565254;
+    stroke-width:2.4;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    fill:none;
+
+}
+
+@keyframes arrowGlow{
+
+    0%, 100%{
+        filter:
+            drop-shadow(0 0 2px #565254)
+            drop-shadow(0 0 4px rgba(86,82,84,.4));
+    }
+
+    50%{
+        filter:
+            drop-shadow(0 0 8px #565254)
+            drop-shadow(0 0 16px rgba(86,82,84,.7));
+    }
+
+}
+
+@keyframes arrowGlowAlt{
+
+    0%, 100%{
+        filter:
+            drop-shadow(0 0 2px #3a3738)
+            drop-shadow(0 0 4px rgba(58,55,56,.4));
+    }
+
+    50%{
+        filter:
+            drop-shadow(0 0 8px #3a3738)
+            drop-shadow(0 0 16px rgba(58,55,56,.7));
+    }
+
+}
+
+@keyframes arrowBobDown{
+
+    0%, 100%{ transform:translateY(0); }
+    50%{ transform:translateY(6px); }
+
+}
+
+@keyframes arrowBobUp{
+
+    0%, 100%{ transform:translateY(0); }
+    50%{ transform:translateY(-6px); }
+
+}
+
+@media (prefers-reduced-motion: reduce){
+
+    .pageArrow svg{
+        animation:none;
+    }
+
+}
+
+/* =========================
+   PAGE 1 — WELCOME VIDEO
+========================= */
+
+.welcomeVideo{
+
+    max-width:75vw;
+    max-height:75vh;
+
+    object-fit:contain;
+
+    display:block;
+
+}
+
+/* =========================
+   PAGE 2 — DUCKIE
+========================= */
+
+.duckieVideo{
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    z-index:0;
+
+}
+
+/* Reusable overlay utilities — add these
+   classes to any element you drop on top
+   of the Duckie video (image, svg, div).
+   Position each one with an inline
+   --pos-top / --pos-left. */
+
+.overlay-item{
+
+    position:absolute;
+
+    top:var(--pos-top, 50%);
+    left:var(--pos-left, 50%);
+
+    z-index:5;
+
+    pointer-events:none;
+
+}
+
+.glow-faint{
+
+    animation:glowPulse 3s ease-in-out infinite;
+
+}
+
+@keyframes glowPulse{
+
+    0%, 100%{
+
+        opacity:.55;
+
+        filter:
+            drop-shadow(0 0 2px #565254)
+            drop-shadow(0 0 3px rgba(86,82,84,.3));
+    }
+
+    50%{
+
+        opacity:1;
+
+        filter:
+            drop-shadow(0 0 6px #565254)
+            drop-shadow(0 0 12px rgba(86,82,84,.6));
+    }
+
+}
+
+.bounce-slight{
+
+    animation:bounceSlight 1.8s ease-in-out infinite;
+    animation-delay:var(--delay, 0s);
+
+}
+
+@keyframes bounceSlight{
+
+    0%, 100%{ transform:translateY(0); }
+    50%{ transform:translateY(-6px); }
+
+}
+
+@media (prefers-reduced-motion: reduce){
+
+    .glow-faint,
+    .bounce-slight{
+        animation:none;
+    }
+
+}
+
+/* =========================
+   PAGE 3 — WHAT ARE YOU
+   INTERESTED IN?
+========================= */
+
+#interestsPage{
+
+    flex-direction:column;
+
+}
+
+.headingRow{
+
+    margin-top:64px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+
+}
+
+.headingRow h1{
+
+    font-family:"Goodfriend", "Caveat", cursive;
+    font-weight:600;
+
+    font-size:clamp(28px, 4vw, 48px);
+
+    color:#3a3738;
+
+    white-space:nowrap;
+    overflow:hidden;
+
+    border-right:2px solid transparent;
+
+}
+
+.headingRow h1.is-typing{
+
+    border-right-color:#3a3738;
+    animation:caretBlink .8s steps(1) infinite;
+
+}
+
+@keyframes caretBlink{
+
+    0%, 100%{ border-color:#3a3738; }
+    50%{ border-color:transparent; }
+
+}
+
+.sparkleSlot{
+
+    width:34px;
+    height:34px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    animation:sparkleGlow 2.6s ease-in-out infinite;
+
+}
+
+.sparkleSlot:nth-child(3){
+    animation-delay:.5s;
+}
+
+@keyframes sparkleGlow{
+
+    0%, 100%{
+
+        opacity:.5;
+
+        filter:
+            drop-shadow(0 0 2px #b13b76)
+            drop-shadow(0 0 3px rgba(177,59,118,.3));
+    }
+
+    50%{
+
+        opacity:1;
+
+        filter:
+            drop-shadow(0 0 7px #b13b76)
+            drop-shadow(0 0 14px rgba(177,59,118,.55));
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .sparkleSlot{ animation:none; }
+    .headingRow h1.is-typing{ animation:none; }
+
+}
+
+.navWheel{
+
+    position:relative;
+
+    width:min(70vw, 560px);
+    height:min(70vw, 560px);
+
+    margin-top:24px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    --radius: 200px;
+
+}
+
+.duckyFace{
+
+    width:42%;
+    height:42%;
+
+    object-fit:contain;
+
+    z-index:2;
+
+}
+
+.navCircle{
+
+    position:absolute;
+
+    top:calc(50% - var(--radius) * cos(var(--angle)) - 55px);
+    left:calc(50% + var(--radius) * sin(var(--angle)) - 55px);
+
+    width:110px;
+    height:110px;
+
+    border-radius:50%;
+
+    background:#b13b76;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+
+    text-decoration:none;
+
+    padding:12px;
+
+    z-index:3;
+
+    transition:transform .25s ease;
+
+    box-shadow:0 6px 18px rgba(177,59,118,.25);
+
+}
+
+.navCircle:hover,
+.navCircle:focus-visible{
+
+    transform:scale(1.15);
+
+}
+
+.navCircle span{
+
+    font-family:"CanvaCrayon", "Kalam", sans-serif;
+    font-size:15px;
+    line-height:1.25;
+
+    color:#f1eff0;
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .navCircle{ transition:none; }
+
+}
+
+@media (max-width:640px){
+
+    .navWheel{ --radius: 130px; }
+
+    .navCircle{
+        width:82px;
+        height:82px;
+
+        top:calc(50% - var(--radius) * cos(var(--angle)) - 41px);
+        left:calc(50% + var(--radius) * sin(var(--angle)) - 41px);
+    }
+
+    .navCircle span{ font-size:12px; }
+
+}
+
+/* page 3's arrows use a slightly different
+   ink tone than pages 1 & 2 — scoped so it
+   doesn't affect the other slides' arrows */
+
+#interestsPage .pageArrow svg{
+    animation:arrowGlowAlt 2.2s ease-in-out infinite;
+}
+
+#interestsPage .pageArrow--down svg{
+    animation:
+        arrowGlowAlt 2.2s ease-in-out infinite,
+        arrowBobDown 2.2s ease-in-out infinite;
+}
+
+#interestsPage .pageArrow--up svg{
+    animation:
+        arrowGlowAlt 2.2s ease-in-out infinite,
+        arrowBobUp 2.2s ease-in-out infinite;
+}
+
+#interestsPage .pageArrow path{
+    stroke:#3a3738;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<main id="slides">
+
+    <!-- =========================
+         SLIDE 1 — WELCOME VIDEO
+    ========================= -->
+
+    <section class="slide" id="welcomePage">
+
+        <!-- REPLACE WITH YOUR GIF -->
+
+        <video
+            id="welcomeVideo"
+            class="welcomeVideo"
+            autoplay
+            muted
+            playsinline
+        >
+            <source src="welcome.mp4" type="video/mp4">
+        </video>
+
+        <!-- GLOWING ARROW — down to slide 2
+             (no "up" arrow here — this is the first slide) -->
+
+        <a class="pageArrow pageArrow--down" href="#duckiePage" aria-label="Go to next page">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 9L12 17L20 9"/>
+            </svg>
+        </a>
+
+    </section>
+
+    <!-- =========================
+         SLIDE 2 — DUCKIE
+    ========================= -->
+
+    <section class="slide" id="duckiePage">
+
+        <!-- REPLACE WITH YOUR DuckyPage VIDEO -->
+
+        <video
+            id="duckieVideo"
+            class="duckieVideo"
+            autoplay
+            muted
+            loop
+            playsinline
+        >
+            <source src="DuckyPage.mp4" type="video/mp4">
+        </video>
+
+        <!-- YOUR OWN GRAPHICS GO HERE
+             Add each element with class="overlay-item" plus
+             glow-faint and/or bounce-slight, then set its position
+             with an inline --pos-top / --pos-left. A few examples
+             (delete once you've swapped in your real artwork):
+
+        <img
+            src="your-sparkle.png"
+            class="overlay-item glow-faint"
+            style="--pos-top:18%; --pos-left:62%; width:46px;"
+            alt=""
+        >
+
+        <img
+            src="your-line-1.png"
+            class="overlay-item bounce-slight"
+            style="--pos-top:40%; --pos-left:74%; --delay:0s;"
+            alt=""
+        >
+        <img
+            src="your-line-2.png"
+            class="overlay-item bounce-slight"
+            style="--pos-top:44%; --pos-left:74%; --delay:.15s;"
+            alt=""
+        >
+        <img
+            src="your-line-3.png"
+            class="overlay-item bounce-slight"
+            style="--pos-top:48%; --pos-left:74%; --delay:.3s;"
+            alt=""
+        >
+
+        -->
+
+        <!-- GLOWING ARROWS — up to slide 1, down to slide 3 -->
+
+        <a class="pageArrow pageArrow--up" href="#welcomePage" aria-label="Go to previous page">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 15L12 7L20 15"/>
+            </svg>
+        </a>
+
+        <a class="pageArrow pageArrow--down" href="#interestsPage" aria-label="Go to next page">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 9L12 17L20 9"/>
+            </svg>
+        </a>
+
+    </section>
+
+    <!-- =========================
+         SLIDE 3 — WHAT ARE YOU
+         INTERESTED IN?
+    ========================= -->
+
+    <section class="slide" id="interestsPage">
+
+        <div class="headingRow">
+
+            <!-- SPARKLE SLOT 1 — drop your own graphic in here -->
+            <div class="sparkleSlot" aria-hidden="true">
+                <!-- e.g. <img src="sparkle.png" width="24" alt=""> -->
+            </div>
+
+            <h1 id="typedHeading"></h1>
+
+            <!-- SPARKLE SLOT 2 -->
+            <div class="sparkleSlot" aria-hidden="true">
+                <!-- e.g. <img src="sparkle.png" width="24" alt=""> -->
+            </div>
+
+        </div>
+
+        <div class="navWheel">
+
+            <!-- REPLACE WITH YOUR DuckyFace IMAGE -->
+            <img src="DuckyFace.png" class="duckyFace" alt="Duckie">
+
+            <a href="#comms" class="navCircle" style="--angle:-90deg;">
+                <span>Comms</span>
+            </a>
+
+            <a href="#blogposts" class="navCircle" style="--angle:-45deg;">
+                <span>Blogposts</span>
+            </a>
+
+            <a href="#social-media" class="navCircle" style="--angle:0deg;">
+                <span>Social Media</span>
+            </a>
+
+            <a href="#other" class="navCircle" style="--angle:45deg;">
+                <span>Other</span>
+            </a>
+
+            <a href="#my-stats" class="navCircle" style="--angle:90deg;">
+                <span>My Stats</span>
+            </a>
+
+        </div>
+
+        <!-- GLOWING ARROW — up to slide 2 -->
+
+        <a class="pageArrow pageArrow--up" href="#duckiePage" aria-label="Go to previous page">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 15L12 7L20 15"/>
+            </svg>
+        </a>
+
+        <!-- DOWN ARROW — uncomment and point at your
+             next slide's id once one exists
+
+        <a class="pageArrow pageArrow--down" href="#nextSlideId" aria-label="Go to next page">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 9L12 17L20 9"/>
+            </svg>
+        </a>
+
+        -->
+
+    </section>
+
+</main>
+
+<script>
+
+/* =========================
+   SLIDE 1 — FREEZE VIDEO ON LAST FRAME
+========================= */
+
+const welcomeVideo =
+    document.getElementById("welcomeVideo");
+
+welcomeVideo.addEventListener("ended", () => {
+
+    welcomeVideo.pause();
+
+    welcomeVideo.currentTime =
+        welcomeVideo.duration;
+
+});
+
+/* =========================
+   SLIDE 3 — TYPEWRITER HEADING
+   Types once on page load.
+========================= */
+
+const heading =
+    document.getElementById("typedHeading");
+
+const fullText =
+    "What are you interested in?";
+
+const prefersReducedMotion =
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if(prefersReducedMotion){
+
+    heading.textContent = fullText;
+
+}else{
+
+    heading.classList.add("is-typing");
+
+    let i = 0;
+
+    const typeNext = () => {
+
+        heading.textContent = fullText.slice(0, i);
+
+        i++;
+
+        if(i <= fullText.length){
+
+            setTimeout(typeNext, 45);
+
+        }else{
+
+            heading.classList.remove("is-typing");
+
+        }
+
+    };
+
+    typeNext();
+
+}
+
+</script>
+
+</body>
+</html>
