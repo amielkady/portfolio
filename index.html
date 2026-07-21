@@ -24,13 +24,13 @@
 
 @font-face{
     font-family:"Goodfriend";
-    src:url("fonts/GoodFriend-R.ttf") format("truetype"),
+    src:url("fonts/GoodFriend-R.ttf") format("truetype");
     font-display:swap;
 }
 
 @font-face{
     font-family:"CanvaCrayon";
-    src:url("fonts/Crayon.ttf") format("truetype"),
+    src:url("fonts/Crayon.ttf") format("truetype");
     font-display:swap;
 }
 
@@ -52,9 +52,9 @@ html,
 body{
     width:100%;
     height:100%;
-    overflow: hidden;
-    font-family: "Segoe UI", sans-serif;
-    background: #f1eff0;
+    overflow:hidden;
+    font-family:"Segoe UI", sans-serif;
+    background:#f1eff0;
 }
 
 /* =========================
@@ -73,6 +73,8 @@ body{
     scroll-snap-type:y mandatory;
     scroll-behavior:smooth;
 
+    background-color:#f1eff0;
+
 }
 
 .slide{
@@ -89,6 +91,8 @@ body{
     align-items:center;
 
     overflow:hidden;
+
+    background-color:#f1eff0;
 
 }
 
@@ -441,8 +445,13 @@ body{
 
 .duckyFace{
 
-    width:42%;
-    height:42%;
+    /* If Duckie still looks small after this bump, the PNG
+       almost certainly has transparent padding baked around
+       the artwork — crop it tight in an image editor for the
+       real fix, this % is just a ceiling on the box size. */
+
+    width:58%;
+    height:58%;
 
     object-fit:contain;
 
@@ -664,8 +673,7 @@ body{
                 <!-- e.g. <img src="sparkle.png" width="24" alt=""> -->
             </div>
 
-            <h1 id="typedHeading",       style="font-family: Goodfriend, color: #565254;"></h1>
-     
+            <h1 id="typedHeading" style="color:#565254;"></h1>
 
             <!-- SPARKLE SLOT 2 -->
             <div class="sparkleSlot" aria-hidden="true">
@@ -687,7 +695,7 @@ body{
                 <span>Blogposts</span>
             </a>
 
-            <a href="social-media" class="navCircle" style="--angle:180deg;">
+            <a href="social-media" class="navCircle" style="--angle:180deg; --radius:110px;">
                 <span>Social Media</span>
             </a>
 
@@ -742,24 +750,12 @@ welcomeVideo.addEventListener("ended", () => {
 
 });
 
-      SLIDE 1 — FREEZE VIDEO ON LAST FRAME
-========================= */
-
-const welcomeVideo =
-    document.getElementById("DuckyPage");
-
-DuckyPage.addEventListener("ended", () => {
-
-    DuckyPage.pause();
-
-    DuckyPage.currentTime =
-        DuckyPage.duration;
-
-});
-
 /* =========================
    SLIDE 3 — TYPEWRITER HEADING
-   Types once on page load.
+   Types once, the first time this
+   slide actually scrolls into view
+   (not on page load, since the user
+   might not reach it for a while).
 ========================= */
 
 const heading =
@@ -771,11 +767,14 @@ const fullText =
 const prefersReducedMotion =
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-if(prefersReducedMotion){
+const typeHeading = () => {
 
-    heading.textContent = fullText;
+    if(prefersReducedMotion){
 
-}else{
+        heading.textContent = fullText;
+        return;
+
+    }
 
     heading.classList.add("is-typing");
 
@@ -801,7 +800,28 @@ if(prefersReducedMotion){
 
     typeNext();
 
-}
+};
+
+const interestsPage =
+    document.getElementById("interestsPage");
+
+const headingObserver = new IntersectionObserver((entries) => {
+
+    entries.forEach((entry) => {
+
+        if(entry.isIntersecting){
+
+            typeHeading();
+
+            headingObserver.unobserve(interestsPage);
+
+        }
+
+    });
+
+}, { threshold: 0.5 });
+
+headingObserver.observe(interestsPage);
 
 </script>
 
