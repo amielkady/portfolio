@@ -54,7 +54,7 @@ body{
     height:100%;
     overflow:hidden;
     font-family:"Segoe UI", sans-serif;
-    background:#f1eff0;
+    background:#efedee;
 }
 
 /* =========================
@@ -73,7 +73,7 @@ body{
     scroll-snap-type:y mandatory;
     scroll-behavior:smooth;
 
-    background-color:#f1eff0;
+    background-color:#efedee;
 
 }
 
@@ -83,7 +83,6 @@ body{
     height:100vh;
 
     scroll-snap-align:start;
-    scroll-snap-stop:always;
 
     position:relative;
 
@@ -446,13 +445,18 @@ body{
 
 .duckyFace{
 
-    /* If Duckie still looks small after this bump, the PNG
+    /* Bumped again — but there's a real ceiling here: at some
+       point growing this box further will make it overlap the
+       circles, since they're a fixed distance from the center.
+       If Duckie is STILL visually small at this size, the PNG
        almost certainly has transparent padding baked around
-       the artwork — crop it tight in an image editor for the
-       real fix, this % is just a ceiling on the box size. */
+       the artwork itself — open it in any image editor, crop
+       tight to the duck's actual edges, re-export, and swap
+       the file. That fixes it permanently; this percentage
+       can only inflate the box, not the art inside it. */
 
-    width:58%;
-    height:58%;
+    width:68%;
+    height:68%;
 
     object-fit:contain;
 
@@ -504,7 +508,7 @@ body{
     font-size:15px;
     line-height:1.25;
 
-    color:#f1eff0;
+    color:#efedee;
 
 }
 
@@ -604,7 +608,6 @@ body{
             class="duckieVideo"
             autoplay
             muted
-            loop
             playsinline
         >
             <source src="DuckyPage.mp4" type="video/mp4">
@@ -750,6 +753,76 @@ welcomeVideo.addEventListener("ended", () => {
         welcomeVideo.duration;
 
 });
+
+/* =========================
+   SLIDE 2 — FREEZE VIDEO ON LAST FRAME
+   Same behavior as slide 1's video.
+========================= */
+
+const duckieVideo =
+    document.getElementById("duckieVideo");
+
+duckieVideo.addEventListener("ended", () => {
+
+    duckieVideo.pause();
+
+    duckieVideo.currentTime =
+        duckieVideo.duration;
+
+});
+
+/* =========================
+   WHEEL-BASED SLIDE NAVIGATION
+   Backup for native CSS scroll-snap,
+   in case a browser/input device
+   doesn't trigger it reliably on
+   its own. Tracks which slide is
+   currently active, then manually
+   scrolls to the next/previous one
+   on any wheel input.
+========================= */
+
+const slidesContainer =
+    document.getElementById("slides");
+
+const slideEls =
+    Array.from(document.querySelectorAll("#slides .slide"));
+
+let activeSlideIndex = 0;
+let isSlideScrolling = false;
+
+const slideObserver = new IntersectionObserver((entries) => {
+
+    entries.forEach((entry) => {
+
+        if(entry.isIntersecting && entry.intersectionRatio > 0.5){
+
+            activeSlideIndex = slideEls.indexOf(entry.target);
+
+        }
+
+    });
+
+}, { threshold: 0.5 });
+
+slideEls.forEach((slide) => slideObserver.observe(slide));
+
+slidesContainer.addEventListener("wheel", (e) => {
+
+    if(isSlideScrolling) return;
+
+    const goingDown = e.deltaY > 0;
+    const targetIndex = goingDown ? activeSlideIndex + 1 : activeSlideIndex - 1;
+
+    if(targetIndex < 0 || targetIndex >= slideEls.length) return;
+
+    isSlideScrolling = true;
+
+    slideEls[targetIndex].scrollIntoView({ behavior:"smooth" });
+
+    setTimeout(() => { isSlideScrolling = false; }, 900);
+
+}, { passive:true });
 
 /* =========================
    SLIDE 3 — TYPEWRITER HEADING
