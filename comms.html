@@ -404,6 +404,37 @@ body{
 
 }
 
+/* Embedded HTML posts (loaded via textFile/fetch) can
+   contain iframes with hardcoded width/height attributes
+   — Google Slides embeds always export like this. These
+   rules force any iframe injected into the post text to
+   scale to the container instead, using aspect-ratio to
+   keep it from squashing. Adjust the ratio if a future
+   embed has different native dimensions. */
+
+.postContent iframe{
+
+    display:block;
+
+    width:100%;
+    max-width:100%;
+
+    aspect-ratio:1920/1109;
+    height:auto;
+
+    border:none;
+
+}
+
+.postContent .slide-frame{
+
+    width:100%;
+    max-width:100%;
+
+    overflow:hidden;
+
+}
+
 .notice{
 
     width:100%;
@@ -453,27 +484,6 @@ body{
 
     background:#565254;
     color:#efedee;
-
-}
-   .siteFooter{
-
-    position:fixed;
-
-    bottom:0;
-    left:0;
-
-    width:100%;
-
-    background:#b13b76;
-opacity: 0.7;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:40px;
-
-    padding:16px 24px;
-
-    z-index:60;
 
 }
 
@@ -582,7 +592,6 @@ opacity: 0.7;
         <p id="postContentText"></p>
 
     </section>
-   
 
     <a class="backToPortfolio" href="index.html#interestsPage">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -591,14 +600,6 @@ opacity: 0.7;
         <span>Back to Portfolio</span>
     </a>
 
-    <footer class="siteFooter">
-
-        <!-- REPLACE href WITH THE REAL DESTINATIONS -->
-        <a href="About-Me.html">About Me</a>
-        <a href="https://www.linkedin.com/in/amielkady">LinkedIn</a>
-        <a href="mailto: amiselkady@gmail.com">Contact Me</a>
-
-    </footer>
 <script>
 
 /* =========================
