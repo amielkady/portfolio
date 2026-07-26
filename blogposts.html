@@ -5,7 +5,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/x-icon" href="images/DuckyFace.png">
+<link rel="icon" type="image/x-icon" href="DuckyFace.png">
 <title>Blog Posts — Amira Elkady's Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
@@ -51,7 +51,7 @@ body{
     min-height:100%;
     font-family:"Segoe UI", sans-serif;
 
-    background-image:url("images/backgroundimg.png");
+    background-image:url("backgroundimg.png");
     background-repeat:no-repeat;
     background-attachment:fixed;
     background-size:100% 100%;
@@ -481,311 +481,55 @@ body{
 }
 
 /* =========================
-   DUCKY CHAT — TRIGGER
-   Small floating icon, bottom right.
+   FIXED FOOTER
+   Stays in place while scrolling.
 ========================= */
 
-.duckyChat{
+.siteFooter{
 
     position:fixed;
 
-    bottom:28px;
-    right:28px;
+    bottom:0;
+    left:0;
 
-    z-index:40;
+    width:100%;
 
-    transition:opacity .3s ease;
-
-}
-
-.duckyChat.is-hidden{
-
-    opacity:0;
-    pointer-events:none;
-
-}
-
-.duckyChatPrompt{
-
-    position:absolute;
-
-    bottom:100%;
-    right:0;
-
-    margin-bottom:10px;
-
-    white-space:nowrap;
-
-    font-family:"CanvaCrayon", "Kalam", sans-serif;
-    font-size:20px;
-
-    color:#3a3738;
-
-    opacity:0;
-
-    transition:opacity .3s ease;
-
-    pointer-events:none;
-
-}
-
-.duckyChatPrompt.is-visible{ opacity:1; }
-
-/* Same wiggle as funkyLines on the Duckie page,
-   just rotated 180deg so it reads correctly
-   pointing toward the icon from this position. */
-
-.duckyChatLines{
-
-    position:absolute;
-
-    top:-22px;
-    left:-26px;
-
-    width:34px;
-
-    pointer-events:none;
-
-}
-
-.wiggle-slow-flipped{
-
-    animation:wiggleSlowFlipped 4s ease-in-out infinite;
-    transform-origin:center;
-
-}
-
-@keyframes wiggleSlowFlipped{
-
-    0%, 100%{ transform:rotate(176deg); }
-    50%{ transform:rotate(184deg); }
-
-}
-
-.duckyChatIconBtn{
-
-    position:relative;
-
-    background:none;
-    border:none;
-    padding:0;
-
-    cursor:pointer;
-
-    display:block;
-
-}
-
-.duckyChatIcon{
-
-    width:64px;
-    height:auto;
-
-    display:block;
-
-    transition:transform .25s ease;
-
-}
-
-.duckyChatIconBtn:hover .duckyChatIcon{
-    transform:scale(1.08);
-}
-
-@media (prefers-reduced-motion:reduce){
-
-    .wiggle-slow-flipped{ animation:none; }
-
-}
-
-/* =========================
-   DUCKY CHAT — OVERLAY + PANEL
-   Opens on click. Panel takes the
-   right 60% of the viewport; the
-   rest of the page dims and blurs
-   behind it.
-========================= */
-
-.duckyChatOverlay{
-
-    position:fixed;
-    inset:0;
-
-    z-index:50;
-
-    display:flex;
-    justify-content:flex-end;
-
-    opacity:0;
-    visibility:hidden;
-
-    background:rgba(58,55,56,.4);
-
-    backdrop-filter:blur(6px);
-    -webkit-backdrop-filter:blur(6px);
-
-    transition:opacity .35s ease, visibility .35s ease;
-
-}
-
-.duckyChatOverlay.is-open{
-
-    opacity:1;
-    visibility:visible;
-
-}
-
-.duckyChatPanel{
-
-    position:relative;
-
-    width:60vw;
-    max-width:820px;
-    height:100%;
-
-    background:#efedee;
+    background:#b13b76;
 
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:36px;
+    gap:40px;
 
-    padding:40px;
+    padding:16px 24px;
 
-    transform:translateX(100%);
-
-    transition:transform .4s cubic-bezier(.65,0,.35,1);
-
-    box-shadow:-12px 0 40px rgba(58,55,56,.25);
+    z-index:60;
 
 }
 
-.duckyChatOverlay.is-open .duckyChatPanel{
-    transform:translateX(0);
-}
+.siteFooter a{
 
-.duckyChatCloseBtn{
+    font-family:"Segoe UI", sans-serif;
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:.02em;
 
-    position:absolute;
-
-    top:24px;
-    left:24px;
-
-    width:40px;
-    height:40px;
-
-    border-radius:50%;
-    border:1px solid #565254;
-
-    background:rgba(239,237,238,.9);
-
-    font-size:20px;
-    line-height:1;
-
-    color:#565254;
-
-    cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    transition:background .25s ease, color .25s ease;
-
-    z-index:2;
-
-}
-
-.duckyChatCloseBtn:hover{
-
-    background:#565254;
     color:#efedee;
-
-}
-
-.speechBubbles{
-
-    display:flex;
-    flex-direction:column;
-    gap:22px;
-
-    align-items:flex-end;
-
-}
-
-.speechBubble{
-
-    position:relative;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
     text-decoration:none;
 
-    transition:transform .25s ease;
+    transition:opacity .2s ease;
 
 }
 
-.speechBubble:hover,
-.speechBubble:focus-visible{
-    transform:scale(1.08);
+.siteFooter a:hover,
+.siteFooter a:focus-visible{
+    opacity:.75;
 }
 
-.speechBubble img{
+@media (max-width:520px){
 
-    width:190px;
-    display:block;
-
-}
-
-.speechBubble span{
-
-    position:absolute;
-
-    font-family:"CanvaCrayon", "Kalam", sans-serif;
-    font-size:15px;
-
-    color:#3a3738;
-    text-align:center;
-
-    padding:0 22px;
-
-    pointer-events:none;
-
-}
-
-.duckyChatPanelIcon{
-
-    /* This is meant to be DuckyChat.png at its "original"
-       size — adjust to match your actual source PNG's
-       natural proportions. */
-
-    width:150px;
-    height:auto;
-
-}
-
-@media (prefers-reduced-motion:reduce){
-
-    .duckyChatPanel{ transition:none; }
-    .speechBubble{ transition:none; }
-
-}
-
-@media (max-width:760px){
-
-    .duckyChatPanel{
-        width:85vw;
-        flex-direction:column;
-        gap:20px;
-    }
-
-    .speechBubbles{
-        flex-direction:row;
-        align-items:center;
-    }
-
-    .speechBubble img{ width:120px; }
+    .siteFooter{ gap:22px; }
+    .siteFooter a{ font-size:13px; }
 
 }
 
@@ -842,56 +586,17 @@ body{
     </a>
 
     <!-- =========================
-         DUCKY CHAT — TRIGGER
+         FIXED FOOTER
     ========================= -->
 
-    <div class="duckyChat" id="duckyChat">
+    <footer class="siteFooter">
 
-        <span class="duckyChatPrompt" id="duckyChatPrompt"></span>
+        <!-- REPLACE href WITH THE REAL DESTINATIONS -->
+        <a href="#">About Me</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Contact Me</a>
 
-        <img src="Graphics/funkyLines.png" class="duckyChatLines wiggle-slow-flipped" alt="">
-
-        <button class="duckyChatIconBtn" id="duckyChatIconBtn" aria-label="Open Duckie chat">
-            <img src="Graphics/DuckyChat.png" class="duckyChatIcon" alt="Duckie">
-        </button>
-
-    </div>
-
-    <!-- =========================
-         DUCKY CHAT — OVERLAY PANEL
-    ========================= -->
-
-    <div class="duckyChatOverlay" id="duckyChatOverlay">
-
-        <div class="duckyChatPanel">
-
-            <button class="duckyChatCloseBtn" id="duckyChatCloseBtn" aria-label="Close Duckie chat">×</button>
-
-            <div class="speechBubbles">
-
-                <!-- REPLACE href WITH THE REAL DESTINATION -->
-                <a href="#" class="speechBubble">
-                    <img src="Graphics/speechBubble.png" alt="">
-                    <span>See the numbers</span>
-                </a>
-
-                <a href="#" class="speechBubble">
-                    <img src="Graphics/speechBubble.png" alt="">
-                    <span>About Amira</span>
-                </a>
-
-                <a href="index.html#interestsPage" class="speechBubble">
-                    <img src="Graphics/speechBubble.png" alt="">
-                    <span>Back to Portfolio</span>
-                </a>
-
-            </div>
-
-            <img src="Graphics/DuckyChat.png" class="duckyChatPanelIcon" alt="Duckie">
-
-        </div>
-
-    </div>
+    </footer>
 
 
 <script>
@@ -907,33 +612,32 @@ const posts = [
     {
         id:"medical",
         title:"Medical",
-        image:"images/medicalimg.png",
-        contentImage:"images/medicalimg.png",
-        textFile:"posts/medical.html" },
+        image:"medical-thumb.jpg",
+        contentImage:"medical-full.jpg",
+        text:"Placeholder text for the Medical blog post — swap this in with your real content."
+    },
     {
         id:"technical-support",
         title:"Technical Support",
-        image:"images/techimg.png",
-        contentImage:"images/techimg.png",
-        textFile:"posts/tech-support.html"
+        image:"tech-support-thumb.jpg",
+        contentImage:"tech-support-full.jpg",
+        text:"Placeholder text for the Technical Support blog post — swap this in with your real content."
     },
     {
         id:"tourism",
         title:"Tourism",
-        image:"images/travelimg.png",
-        contentImage:"images/travelimg.png",
-        textFile:"posts/tourism.html"
+        image:"tourism-thumb.jpg",
+        contentImage:"tourism-full.jpg",
+        text:"Placeholder text for the Tourism blog post — swap this in with your real content."
     },
     {
         id:"entertainment",
         title:"Entertainment",
-        image:"images/entertainmentimg.png",
-        contentImage:"images/entertainmentimg.png",
-        textFile:"posts/entertainment.html"
+        image:"entertainment-thumb.jpg",
+        contentImage:"entertainment-full.jpg",
+        text:"Placeholder text for the Entertainment blog post — swap this in with your real content."
     }
 ];
-
- 
 
 const track =
     document.getElementById("carouselTrack");
@@ -1070,15 +774,7 @@ function selectPost(index){
     postContentTitle.textContent = post.title;
     postContentImage.src = post.contentImage;
     postContentImage.alt = post.title;
-fetch(post.textFile)
-    .then(response => response.text())
-    .then(data => {
-        postContentText.innerHTML = data;
-    })
-    .catch(error => {
-        console.error("Error loading post:", error);
-        postContentText.textContent = "Unable to load post content.";
-    });
+    postContentText.textContent = post.text;
 
     postContent.classList.add("is-visible");
 
@@ -1089,120 +785,6 @@ fetch(post.textFile)
 closeContent.addEventListener("click", () => {
 
     postContent.classList.remove("is-visible");
-
-});
-
-/* =========================
-   DUCKY CHAT
-========================= */
-
-const duckyChat =
-    document.getElementById("duckyChat");
-
-const duckyChatIconBtn =
-    document.getElementById("duckyChatIconBtn");
-
-const duckyChatPrompt =
-    document.getElementById("duckyChatPrompt");
-
-const duckyChatOverlay =
-    document.getElementById("duckyChatOverlay");
-
-const duckyChatCloseBtn =
-    document.getElementById("duckyChatCloseBtn");
-
-const chatPrefersReducedMotion =
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-const promptText = "Click me!";
-let promptTimeoutId = null;
-
-function typePrompt(){
-
-    if(chatPrefersReducedMotion){
-
-        duckyChatPrompt.textContent = promptText;
-        duckyChatPrompt.classList.add("is-visible");
-        return;
-
-    }
-
-    duckyChatPrompt.classList.add("is-visible");
-
-    let i = 0;
-
-    const step = () => {
-
-        duckyChatPrompt.textContent = promptText.slice(0, i);
-
-        i++;
-
-        if(i <= promptText.length){
-
-            promptTimeoutId = setTimeout(step, 45);
-
-        }
-
-    };
-
-    step();
-
-}
-
-function resetPrompt(){
-
-    clearTimeout(promptTimeoutId);
-
-    duckyChatPrompt.classList.remove("is-visible");
-    duckyChatPrompt.textContent = "";
-
-}
-
-duckyChatIconBtn.addEventListener("mouseenter", typePrompt);
-duckyChatIconBtn.addEventListener("mouseleave", resetPrompt);
-duckyChatIconBtn.addEventListener("focus", typePrompt);
-duckyChatIconBtn.addEventListener("blur", resetPrompt);
-
-function openChat(){
-
-    resetPrompt();
-
-    duckyChat.classList.add("is-hidden");
-    duckyChatOverlay.classList.add("is-open");
-
-}
-
-function closeChat(){
-
-    duckyChatOverlay.classList.remove("is-open");
-    duckyChat.classList.remove("is-hidden");
-
-}
-
-duckyChatIconBtn.addEventListener("click", openChat);
-duckyChatCloseBtn.addEventListener("click", closeChat);
-
-/* click on the blurred backdrop (not the panel itself) also closes */
-
-duckyChatOverlay.addEventListener("click", (e) => {
-
-    if(e.target === duckyChatOverlay){
-
-        closeChat();
-
-    }
-
-});
-
-/* Escape key also closes */
-
-document.addEventListener("keydown", (e) => {
-
-    if(e.key === "Escape" && duckyChatOverlay.classList.contains("is-open")){
-
-        closeChat();
-
-    }
 
 });
 
