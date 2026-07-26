@@ -55,6 +55,13 @@ body{
     overflow:hidden;
     font-family:"Segoe UI", sans-serif;
     background:#efedee;
+   background-image: "backgroundimg.png";
+     background-repeat: no-repeat;
+  background-attachment: fixed;
+     background-size: 100% 100%; 
+
+  min-height: 100vh;
+  margin: 0;
 }
 
 /* =========================
@@ -260,7 +267,7 @@ body{
 
 /* Reusable overlay utilities — add these
    classes to any element you drop on top
-   of the Duckie video (image, svg, div).
+   of a video or slide (image, svg, div).
    Position each one with an inline
    --pos-top / --pos-left. */
 
@@ -319,10 +326,51 @@ body{
 
 }
 
+/* Slow wiggle — a small back-and-forth rotation,
+   similar to Canva's "wiggle" animation preset
+   but slowed way down. Good for line/scribble
+   graphics like funkyLines. */
+
+.wiggle-slow{
+
+    animation:wiggleSlow 4s ease-in-out infinite;
+    animation-delay:var(--delay, 0s);
+    transform-origin:center;
+
+}
+
+@keyframes wiggleSlow{
+
+    0%, 100%{ transform:rotate(-4deg); }
+    50%{ transform:rotate(4deg); }
+
+}
+
+/* Sparkle twinkle — pure opacity fade, no blur/
+   glow at all. Use this for sparkle/star graphics
+   instead of glow-faint when you want a clean
+   on/off twinkle rather than a soft halo. */
+
+.sparkle-twinkle{
+
+    animation:sparkleTwinkle 2.2s ease-in-out infinite;
+    animation-delay:var(--delay, 0s);
+
+}
+
+@keyframes sparkleTwinkle{
+
+    0%, 100%{ opacity:.25; }
+    50%{ opacity:1; }
+
+}
+
 @media (prefers-reduced-motion: reduce){
 
     .glow-faint,
-    .bounce-slight{
+    .bounce-slight,
+    .wiggle-slow,
+    .sparkle-twinkle{
         animation:none;
     }
 
@@ -389,39 +437,10 @@ body{
     align-items:center;
     justify-content:center;
 
-    animation:sparkleGlow 2.6s ease-in-out infinite;
-
-}
-
-.sparkleSlot:nth-child(3){
-    animation-delay:.5s;
-}
-
-@keyframes sparkleGlow{
-
-    0%, 100%{
-
-        opacity:.5;
-
-        filter:
-            drop-shadow(0 0 2px #b13b76)
-            drop-shadow(0 0 3px rgba(177,59,118,.3));
-    }
-
-    50%{
-
-        opacity:1;
-
-        filter:
-            drop-shadow(0 0 7px #b13b76)
-            drop-shadow(0 0 14px rgba(177,59,118,.55));
-    }
-
 }
 
 @media (prefers-reduced-motion:reduce){
 
-    .sparkleSlot{ animation:none; }
     .headingRow h1.is-typing{ animation:none; }
 
 }
@@ -444,7 +463,7 @@ body{
 }
 
 .duckyFace{
-transform:translateY(-35px);
+    transform:translateY(-20px);
     max-width:150px;
     max-height:150px;
     object-fit:contain;
@@ -590,8 +609,6 @@ transform:translateY(-35px);
 
     <section class="slide" id="duckiePage">
 
-   
-
         <video
             id="duckieVideo"
             class="duckieVideo"
@@ -602,24 +619,21 @@ transform:translateY(-35px);
             <source src="DuckyPage.mp4" type="video/mp4">
         </video>
 
-       
+        <!-- Wiggles slowly, like a Canva "wiggle" preset -->
         <img
             src="Graphics/funkyLines.png"
-            class="overlay-item glow-faint"
-            style="--pos-top:18%; --pos-left:62%; width:46px;"
+            class="overlay-item wiggle-slow"
+            style="--pos-top:18%; --pos-left:62%; width:36px;"
             alt=""
         >
 
+        <!-- Pure opacity twinkle, no glow -->
         <img
             src="Graphics/sparkles.png"
-            class="overlay-item bounce-slight"
-            style="--pos-top:40%; --pos-left:74%; --delay:0s;"
+            class="overlay-item sparkle-twinkle"
+            style="--pos-top:40%; --pos-left:74%; --delay:0s; width:28px;"
             alt=""
         >
-      
-     
-
-      
 
         <!-- GLOWING ARROWS — up to slide 1, down to slide 3 -->
 
@@ -646,16 +660,16 @@ transform:translateY(-35px);
 
         <div class="headingRow">
 
-            <!-- SPARKLE SLOT 1 — drop your own graphic in here -->
-            <div class="sparkleSlot" aria-hidden="true">
-        <img src="Graphics/SparkleStars.png" width="24" alt="Stars">
+            <!-- SPARKLE SLOT 1 -->
+            <div class="sparkleSlot">
+                <img src="Graphics/SparkleStars.png" class="sparkle-twinkle" width="22" alt="" style="--delay:0s;">
             </div>
 
-      
+            <h1 id="typedHeading"></h1>
 
             <!-- SPARKLE SLOT 2 -->
-            <div class="sparkleSlot" aria-hidden="true">
-                <!-- e.g. <img src="sparkle.png" width="24" alt=""> -->
+            <div class="sparkleSlot">
+                <!-- e.g. <img src="sparkle.png" class="sparkle-twinkle" width="22" alt="" style="--delay:.5s;"> -->
             </div>
 
         </div>
