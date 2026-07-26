@@ -44,10 +44,12 @@ body{
     width:100%;
     min-height:100%;
     font-family:"Segoe UI", sans-serif;
- background-image: url("backgroundimg.png");
-     background-repeat: no-repeat;
-  background-attachment: fixed;
-     background-size: 100% 100%; 
+
+    background-image:url("backgroundimg.png");
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-size:100% 100%;
+
 }
 
 body{
@@ -57,7 +59,6 @@ body{
     align-items:center;
 
     padding-bottom:80px;
-   background-image: url("backgroundimg.png);
 
 }
 
@@ -67,8 +68,10 @@ body{
 
 .blogpostsHeader{
 
-    width:70%;
-    max-height:40vh;
+    width:40%;
+    max-height:22vh;
+
+    margin-top:32px;
 
     object-fit:cover;
     display:block;
@@ -415,6 +418,8 @@ body{
 
 /* =========================
    BACK TO PORTFOLIO
+   Arrow sits to the left of the
+   text, both inline, not stacked.
 ========================= */
 
 .backToPortfolio{
@@ -422,9 +427,9 @@ body{
     margin-top:64px;
 
     display:flex;
-    flex-direction:column;
+    flex-direction:row;
     align-items:center;
-    gap:8px;
+    gap:10px;
 
     text-decoration:none;
 
@@ -432,12 +437,12 @@ body{
 
 .backToPortfolio svg{
 
-    width:30px;
-    height:30px;
+    width:26px;
+    height:26px;
 
     animation:
         arrowGlow 2.2s ease-in-out infinite,
-        arrowNudgeUp 2.2s ease-in-out infinite;
+        arrowNudgeLeft 2.2s ease-in-out infinite;
 
 }
 
@@ -458,13 +463,6 @@ body{
     font-size:16px;
 
     color:#3a3738;
-
-}
-
-@keyframes arrowNudgeUp{
-
-    0%, 100%{ transform:translateY(0); }
-    50%{ transform:translateY(-6px); }
 
 }
 
@@ -520,9 +518,9 @@ body{
     </section>
 
     <a class="backToPortfolio" href="index.html#interestsPage">
-         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 4L7 12L15 20"/>
-            </svg>
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 4L7 12L15 20"/>
+        </svg>
         <span>Back to Portfolio</span>
     </a>
 
