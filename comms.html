@@ -147,6 +147,8 @@ body{
 
     border-radius:18px;
 
+    background:#e2dfdc; /* shows as a soft placeholder box when a post has no image yet */
+
     box-shadow:0 12px 30px rgba(58,55,56,.18);
 
 }
@@ -383,6 +385,13 @@ body{
 
 }
 
+/* Hidden via JS when a post has no contentImage yet,
+   so no broken-image icon shows in the meantime. */
+
+.postContent img[hidden]{
+    display:none;
+}
+
 .postContent p{
 
     font-family:"Kalam", sans-serif;
@@ -392,6 +401,29 @@ body{
     color:#565254;
 
     text-align:left;
+
+}
+
+.notice{
+
+    width:100%;
+    max-width:520px;
+
+    font-family:"Kalam", sans-serif;
+    font-style:italic;
+    font-size:13px;
+    line-height:1.6;
+
+    color:#7a7678;
+
+    text-align:center;
+
+    padding:10px 16px;
+
+    border:1px solid #dcd9da;
+    border-radius:10px;
+
+    background:rgba(255,255,255,.4);
 
 }
 
@@ -421,6 +453,27 @@ body{
 
     background:#565254;
     color:#efedee;
+
+}
+   .siteFooter{
+
+    position:fixed;
+
+    bottom:0;
+    left:0;
+
+    width:100%;
+
+    background:#b13b76;
+opacity: 0.7;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:40px;
+
+    padding:16px 24px;
+
+    z-index:60;
 
 }
 
@@ -480,8 +533,6 @@ body{
 
 }
 
-
-
 </style>
 
 </head>
@@ -513,13 +564,14 @@ body{
         </button>
 
     </section>
-     
 
     <section class="postContent" id="postContent">
-  <div class="notice">
-        All materials shown here are copyrighted by WorkMotion.  
-        This portfolio sample is presented solely for hiring review and reflects work I contributed to within a broader communications function.
-    </div>
+
+        <div class="notice">
+            All materials shown here are copyrighted by WorkMotion.
+            This portfolio sample is presented solely for hiring review and reflects work I contributed to within a broader communications function.
+        </div>
+
         <button class="closeContent" id="closeContent" aria-label="Close">×</button>
 
         <h2 id="postContentTitle"></h2>
@@ -530,6 +582,7 @@ body{
         <p id="postContentText"></p>
 
     </section>
+   
 
     <a class="backToPortfolio" href="index.html#interestsPage">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -538,10 +591,14 @@ body{
         <span>Back to Portfolio</span>
     </a>
 
-   
+    <footer class="siteFooter">
 
+        <!-- REPLACE href WITH THE REAL DESTINATIONS -->
+        <a href="About-Me.html">About Me</a>
+        <a href="https://www.linkedin.com/in/amielkady">LinkedIn</a>
+        <a href="mailto: amiselkady@gmail.com">Contact Me</a>
 
-
+    </footer>
 <script>
 
 /* =========================
@@ -549,6 +606,15 @@ body{
    Edit titles/images/text here —
    the carousel and content panel
    both build themselves from this.
+
+   Two ways to supply body text:
+   - `text`     : a plain string, used as-is
+   - `textFile` : a path to an .html file, fetched
+                  and injected when the post opens
+
+   Leave `image` / `contentImage` as "" until you
+   have real files — the code below now handles
+   that safely instead of trying to load an empty src.
 ========================= */
 
 const posts = [
@@ -557,18 +623,16 @@ const posts = [
         title:"HR External Communications Strategy",
         image:"",
         contentImage:"",
-        textFile:"posts/HRexternalcomms.html" },
+        textFile:"posts/HRexternalcomms.html"
+    },
     {
         id:"holidayGreet",
         title:"External Communications: Holiday Greeting Card",
         image:"",
         contentImage:"posts/card.gif",
-        
-    },
-
+        text:""
+    }
 ];
-
- 
 
 const track =
     document.getElementById("carouselTrack");
@@ -585,10 +649,21 @@ const itemEls = posts.map((post, index) => {
     item.setAttribute("role", "button");
     item.setAttribute("aria-label", post.title);
 
-    item.innerHTML = `
-        <img src="${post.image}" alt="${post.title}">
-        <span>${post.title}</span>
-    `;
+    const thumb = document.createElement("img");
+    thumb.alt = post.title;
+
+    /* only set src when there's an actual image —
+       an empty src makes the browser request the
+       current page itself, which is never what we want */
+    if(post.image){
+        thumb.src = post.image;
+    }
+
+    const label = document.createElement("span");
+    label.textContent = post.title;
+
+    item.appendChild(thumb);
+    item.appendChild(label);
 
     item.addEventListener("click", () => selectPost(index));
 
@@ -703,17 +778,46 @@ function selectPost(index){
     const post = posts[index];
 
     postContentTitle.textContent = post.title;
-    postContentImage.src = post.contentImage;
-    postContentImage.alt = post.title;
-fetch(post.textFile)
-    .then(response => response.text())
-    .then(data => {
-        postContentText.innerHTML = data;
-    })
-    .catch(error => {
-        console.error("Error loading post:", error);
-        postContentText.textContent = "Unable to load post content.";
-    });
+
+    /* same empty-src guard as the thumbnails above,
+       plus hide the element entirely so there's no
+       broken-image icon while a post has no image yet */
+    if(post.contentImage){
+
+        postContentImage.src = post.contentImage;
+        postContentImage.alt = post.title;
+        postContentImage.hidden = false;
+
+    }else{
+
+        postContentImage.removeAttribute("src");
+        postContentImage.hidden = true;
+
+    }
+
+    /* body text: prefer a fetched textFile if one is
+       given, otherwise fall back to a plain `text`
+       string, otherwise just clear it — never call
+       fetch() on an undefined path */
+    if(post.textFile){
+
+        postContentText.textContent = "Loading…";
+
+        fetch(post.textFile)
+            .then(response => response.text())
+            .then(data => {
+                postContentText.innerHTML = data;
+            })
+            .catch(error => {
+                console.error("Error loading post:", error);
+                postContentText.textContent = "Unable to load post content.";
+            });
+
+    }else{
+
+        postContentText.textContent = post.text || "";
+
+    }
 
     postContent.classList.add("is-visible");
 
@@ -726,8 +830,6 @@ closeContent.addEventListener("click", () => {
     postContent.classList.remove("is-visible");
 
 });
-
-
 
 </script>
 
