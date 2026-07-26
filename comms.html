@@ -543,6 +543,59 @@ body{
 
 }
 
+/* =========================
+   FIXED FOOTER
+   Stays in place while scrolling.
+========================= */
+
+.siteFooter{
+
+    position:fixed;
+
+    bottom:0;
+    left:0;
+
+    width:100%;
+
+    background:#b13b76;
+opacity: 0.7;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:40px;
+
+    padding:16px 24px;
+
+    z-index:60;
+
+}
+
+.siteFooter a{
+
+    font-family:"Segoe UI", sans-serif;
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:.02em;
+
+    color:#efedee;
+    text-decoration:none;
+
+    transition:opacity .2s ease;
+
+}
+
+.siteFooter a:hover,
+.siteFooter a:focus-visible{
+    opacity:.75;
+}
+
+@media (max-width:520px){
+
+    .siteFooter{ gap:22px; }
+    .siteFooter a{ font-size:13px; }
+
+}
+
 </style>
 
 </head>
@@ -599,6 +652,19 @@ body{
         </svg>
         <span>Back to Portfolio</span>
     </a>
+
+    <!-- =========================
+         FIXED FOOTER
+    ========================= -->
+
+    <footer class="siteFooter">
+
+        <!-- REPLACE href WITH THE REAL DESTINATIONS -->
+        <a href="#">About Me</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Contact Me</a>
+
+    </footer>
 
 <script>
 
