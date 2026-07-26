@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="images/DuckyFace.png">
+<title>Comms — Amira Elkady's Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   YOUR FONTS
+   Same font files as index.html —
+   this page lives in the same
+   repo root, so the path matches.
+========================= */
+
+@font-face{
+    font-family:"Goodfriend";
+    src:url("Fonts/GoodFriend-R.ttf") format("truetype");
+    font-display:swap;
+}
+
+@font-face{
+    font-family:"CanvaCrayon";
+    src:url("Fonts/Crayon.ttf") format("truetype");
+    font-display:swap;
+}
+
+</style>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+    font-family:"Segoe UI", sans-serif;
+
+    background-image:url("images/backgroundimg.png");
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-size:100% 100%;
+
+}
+
+body{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    padding-bottom:80px;
+
+}
+
+/* =========================
+   HEADER IMAGE
+========================= */
+
+.commsHeader{
+
+    width:45%;
+    max-height:35vh;
+
+    margin-top:0px;
+
+    align-self:flex-start;
+
+    object-fit:cover;
+    display:block;
+
+}
+
+/* =========================
+   CAROUSEL SECTION
+========================= */
+
+.carouselSection{
+
+    position:relative;
+
+    width:100%;
+    max-width:900px;
+
+    margin-top:0px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0 90px;
+
+}
+
+.carouselTrack{
+
+    position:relative;
+
+    width:100%;
+    height:320px;
+
+}
+
+.carouselItem{
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+
+    cursor:pointer;
+
+    transition:
+        left .5s cubic-bezier(.65,0,.35,1),
+        transform .5s cubic-bezier(.65,0,.35,1),
+        width .5s cubic-bezier(.65,0,.35,1),
+        opacity .5s ease;
+
+}
+
+.carouselItem img{
+
+    width:100%;
+    aspect-ratio:4/3;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+    box-shadow:0 12px 30px rgba(58,55,56,.18);
+
+}
+
+.carouselItem span{
+
+    font-family:"Goodfriend", "Caveat", cursive;
+    font-weight:600;
+
+    color:#3a3738;
+
+    text-align:center;
+
+}
+
+/* --- slot positions, assigned via JS --- */
+
+.carouselItem[data-slot="center"]{
+
+    left:50%;
+    width:280px;
+
+    transform:translate(-50%, -50%) scale(1);
+
+    z-index:3;
+    opacity:1;
+
+}
+
+.carouselItem[data-slot="center"] span{
+    font-size:22px;
+}
+
+.carouselItem[data-slot="center"] img{
+    outline:3px solid #b13b76;
+    outline-offset:4px;
+}
+
+.carouselItem[data-slot="next"]{
+
+    left:84%;
+    width:170px;
+
+    transform:translate(-50%, -50%) scale(1);
+
+    z-index:2;
+    opacity:.7;
+
+}
+
+.carouselItem[data-slot="prev"]{
+
+    left:16%;
+    width:170px;
+
+    transform:translate(-50%, -50%) scale(1);
+
+    z-index:2;
+    opacity:.7;
+
+}
+
+.carouselItem[data-slot="next"] span,
+.carouselItem[data-slot="prev"] span{
+    font-size:16px;
+}
+
+.carouselItem[data-slot="hidden"]{
+
+    left:50%;
+    width:120px;
+
+    transform:translate(-50%, -50%) scale(.5);
+
+    z-index:1;
+    opacity:0;
+
+    pointer-events:none;
+
+}
+
+/* =========================
+   CAROUSEL ARROWS
+   Same glowing technique as the
+   landing page, oriented sideways.
+========================= */
+
+.carouselArrow{
+
+    position:absolute;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    background:none;
+    border:none;
+
+    cursor:pointer;
+
+    padding:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    z-index:5;
+
+}
+
+.carouselArrow--left{ left:0; }
+.carouselArrow--right{ right:0; }
+
+.carouselArrow svg{
+
+    width:34px;
+    height:34px;
+
+    animation:arrowGlow 2.2s ease-in-out infinite;
+
+}
+
+.carouselArrow--left svg{
+
+    animation:
+        arrowGlow 2.2s ease-in-out infinite,
+        arrowNudgeLeft 2.2s ease-in-out infinite;
+
+}
+
+.carouselArrow--right svg{
+
+    animation:
+        arrowGlow 2.2s ease-in-out infinite,
+        arrowNudgeRight 2.2s ease-in-out infinite;
+
+}
+
+.carouselArrow path{
+
+    stroke:#565254;
+    stroke-width:2.4;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    fill:none;
+
+}
+
+@keyframes arrowGlow{
+
+    0%, 100%{
+        filter:
+            drop-shadow(0 0 2px #565254)
+            drop-shadow(0 0 4px rgba(86,82,84,.4));
+    }
+
+    50%{
+        filter:
+            drop-shadow(0 0 8px #565254)
+            drop-shadow(0 0 16px rgba(86,82,84,.7));
+    }
+
+}
+
+@keyframes arrowNudgeLeft{
+
+    0%, 100%{ transform:translateX(0); }
+    50%{ transform:translateX(-6px); }
+
+}
+
+@keyframes arrowNudgeRight{
+
+    0%, 100%{ transform:translateX(0); }
+    50%{ transform:translateX(6px); }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .carouselArrow svg{ animation:none; }
+    .carouselItem{ transition:none; }
+
+}
+
+/* =========================
+   POST CONTENT PANEL
+   Revealed underneath the carousel
+   when a post is clicked. Fill in
+   the placeholder text/images later —
+   this just wires the structure.
+========================= */
+
+.postContent{
+
+    width:100%;
+    max-width:700px;
+
+    margin-top:56px;
+    padding:0 24px;
+
+    text-align:center;
+
+    display:none;
+
+}
+
+.postContent.is-visible{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+
+}
+
+.postContent h2{
+
+    font-family:"Goodfriend", "Caveat", cursive;
+    font-weight:600;
+    font-size:clamp(24px, 3.4vw, 34px);
+
+    color:#3a3738;
+
+}
+
+.postContent img{
+
+    width:100%;
+    max-width:480px;
+
+    border-radius:16px;
+
+    object-fit:cover;
+
+}
+
+.postContent p{
+
+    font-family:"Kalam", sans-serif;
+    font-size:16px;
+    line-height:1.7;
+
+    color:#565254;
+
+    text-align:left;
+
+}
+
+.closeContent{
+
+    align-self:center;
+
+    background:none;
+    border:1px solid #565254;
+    border-radius:999px;
+
+    width:36px;
+    height:36px;
+
+    font-size:18px;
+    line-height:1;
+
+    color:#565254;
+
+    cursor:pointer;
+
+    transition:background .25s ease, color .25s ease;
+
+}
+
+.closeContent:hover{
+
+    background:#565254;
+    color:#efedee;
+
+}
+
+/* =========================
+   BACK TO PORTFOLIO
+   Arrow sits to the left of the
+   text, both inline, not stacked.
+========================= */
+
+.backToPortfolio{
+
+    margin-top:64px;
+
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:10px;
+
+    text-decoration:none;
+
+}
+
+.backToPortfolio svg{
+
+    width:26px;
+    height:26px;
+
+    animation:
+        arrowGlow 2.2s ease-in-out infinite,
+        arrowNudgeLeft 2.2s ease-in-out infinite;
+
+}
+
+.backToPortfolio path{
+
+    stroke:#565254;
+    stroke-width:2.4;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    fill:none;
+
+}
+
+.backToPortfolio span{
+
+    font-family:"Goodfriend", "Caveat", cursive;
+    font-weight:600;
+    font-size:16px;
+
+    color:#3a3738;
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .backToPortfolio svg{ animation:none; }
+
+}
+
+/* =========================
+   DUCKY CHAT — TRIGGER
+   Small floating icon, bottom right.
+========================= */
+
+.duckyChat{
+
+    position:fixed;
+
+    bottom:28px;
+    right:28px;
+
+    z-index:40;
+
+    transition:opacity .3s ease;
+
+}
+
+.duckyChat.is-hidden{
+
+    opacity:0;
+    pointer-events:none;
+
+}
+
+.duckyChatPrompt{
+
+    position:absolute;
+
+    bottom:100%;
+    right:0;
+
+    margin-bottom:10px;
+
+    white-space:nowrap;
+
+    font-family:"CanvaCrayon", "Kalam", sans-serif;
+    font-size:20px;
+
+    color:#3a3738;
+
+    opacity:0;
+
+    transition:opacity .3s ease;
+
+    pointer-events:none;
+
+}
+
+.duckyChatPrompt.is-visible{ opacity:1; }
+
+/* Same wiggle as funkyLines on the Duckie page,
+   just rotated 180deg so it reads correctly
+   pointing toward the icon from this position. */
+
+.duckyChatLines{
+
+    position:absolute;
+
+    top:-22px;
+    left:-26px;
+
+    width:34px;
+
+    pointer-events:none;
+
+}
+
+.wiggle-slow-flipped{
+
+    animation:wiggleSlowFlipped 4s ease-in-out infinite;
+    transform-origin:center;
+
+}
+
+@keyframes wiggleSlowFlipped{
+
+    0%, 100%{ transform:rotate(176deg); }
+    50%{ transform:rotate(184deg); }
+
+}
+
+.duckyChatIconBtn{
+
+    position:relative;
+
+    background:none;
+    border:none;
+    padding:0;
+
+    cursor:pointer;
+
+    display:block;
+
+}
+
+.duckyChatIcon{
+
+    width:64px;
+    height:auto;
+
+    display:block;
+
+    transition:transform .25s ease;
+
+}
+
+.duckyChatIconBtn:hover .duckyChatIcon{
+    transform:scale(1.08);
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .wiggle-slow-flipped{ animation:none; }
+
+}
+
+/* =========================
+   DUCKY CHAT — OVERLAY + PANEL
+   Opens on click. Panel takes the
+   right 60% of the viewport; the
+   rest of the page dims and blurs
+   behind it.
+========================= */
+
+.duckyChatOverlay{
+
+    position:fixed;
+    inset:0;
+
+    z-index:50;
+
+    display:flex;
+    justify-content:flex-end;
+
+    opacity:0;
+    visibility:hidden;
+
+    background:rgba(58,55,56,.4);
+
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+
+    transition:opacity .35s ease, visibility .35s ease;
+
+}
+
+.duckyChatOverlay.is-open{
+
+    opacity:1;
+    visibility:visible;
+
+}
+
+.duckyChatPanel{
+
+    position:relative;
+
+    width:60vw;
+    max-width:820px;
+    height:100%;
+
+    background:#efedee;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:36px;
+
+    padding:40px;
+
+    transform:translateX(100%);
+
+    transition:transform .4s cubic-bezier(.65,0,.35,1);
+
+    box-shadow:-12px 0 40px rgba(58,55,56,.25);
+
+}
+
+.duckyChatOverlay.is-open .duckyChatPanel{
+    transform:translateX(0);
+}
+
+.duckyChatCloseBtn{
+
+    position:absolute;
+
+    top:24px;
+    left:24px;
+
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+    border:1px solid #565254;
+
+    background:rgba(239,237,238,.9);
+
+    font-size:20px;
+    line-height:1;
+
+    color:#565254;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:background .25s ease, color .25s ease;
+
+    z-index:2;
+
+}
+
+.duckyChatCloseBtn:hover{
+
+    background:#565254;
+    color:#efedee;
+
+}
+
+.speechBubbles{
+
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+
+    align-items:flex-end;
+
+}
+
+.speechBubble{
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    transition:transform .25s ease;
+
+}
+
+.speechBubble:hover,
+.speechBubble:focus-visible{
+    transform:scale(1.08);
+}
+
+.speechBubble img{
+
+    width:190px;
+    display:block;
+
+}
+
+.speechBubble span{
+
+    position:absolute;
+
+    font-family:"CanvaCrayon", "Kalam", sans-serif;
+    font-size:15px;
+
+    color:#3a3738;
+    text-align:center;
+
+    padding:0 22px;
+
+    pointer-events:none;
+
+}
+
+.duckyChatPanelIcon{
+
+    /* This is meant to be DuckyChat.png at its "original"
+       size — adjust to match your actual source PNG's
+       natural proportions. */
+
+    width:150px;
+    height:auto;
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .duckyChatPanel{ transition:none; }
+    .speechBubble{ transition:none; }
+
+}
+
+@media (max-width:760px){
+
+    .duckyChatPanel{
+        width:85vw;
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .speechBubbles{
+        flex-direction:row;
+        align-items:center;
+    }
+
+    .speechBubble img{ width:120px; }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+    <!-- REPLACE WITH YOUR BLOGPOSTS HEADER IMAGE -->
+    <img src="Graphics/SocialH1.png" class="commsHeader" alt="SocialMedia">
+
+    <section class="carouselSection">
+
+        <button class="carouselArrow carouselArrow--left" id="arrowLeft" aria-label="Previous blog post">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 4L7 12L15 20"/>
+            </svg>
+        </button>
+
+        <div class="carouselTrack" id="carouselTrack">
+            <!-- Carousel items are generated by the script below
+                 from the `posts` array — edit that array to change
+                 titles, images, or content, no need to touch this
+                 markup directly. -->
+        </div>
+
+        <button class="carouselArrow carouselArrow--right" id="arrowRight" aria-label="Next blog post">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 4L17 12L9 20"/>
+            </svg>
+        </button>
+
+    </section>
+
+    <section class="postContent" id="postContent">
+
+        <button class="closeContent" id="closeContent" aria-label="Close">×</button>
+
+        <h2 id="postContentTitle"></h2>
+
+        <!-- REPLACE WITH YOUR SUPPORTING IMAGE PER POST -->
+        <img id="postContentImage" src="" alt="">
+
+        <p id="postContentText"></p>
+
+    </section>
+
+    <a class="backToPortfolio" href="index.html#interestsPage">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 4L7 12L15 20"/>
+        </svg>
+        <span>Back to Portfolio</span>
+    </a>
+
+   
+
+
+
+<script>
+
+/* =========================
+   POST DATA
+   Edit titles/images/text here —
+   the carousel and content panel
+   both build themselves from this.
+========================= */
+
+const posts = [
+    {
+        id:"commsStrat",
+        title:"HR External Communications Strategy",
+        image:"",
+        contentImage:"",
+        textFile:"" },
+    {
+        id:"holidayGreet",
+        title:"External Communications: Holiday Greeting Card",
+        image:"",
+        contentImage:"",
+        textFile:""
+    },
+
+];
+
+ 
+
+const track =
+    document.getElementById("carouselTrack");
+
+/* build one element per post, once */
+
+const itemEls = posts.map((post, index) => {
+
+    const item = document.createElement("div");
+
+    item.className = "carouselItem";
+    item.dataset.index = index;
+    item.tabIndex = 0;
+    item.setAttribute("role", "button");
+    item.setAttribute("aria-label", post.title);
+
+    item.innerHTML = `
+        <img src="${post.image}" alt="${post.title}">
+        <span>${post.title}</span>
+    `;
+
+    item.addEventListener("click", () => selectPost(index));
+
+    item.addEventListener("keydown", (e) => {
+
+        if(e.key === "Enter" || e.key === " "){
+
+            e.preventDefault();
+            selectPost(index);
+
+        }
+
+    });
+
+    track.appendChild(item);
+
+    return item;
+
+});
+
+/* =========================
+   CAROUSEL STATE
+========================= */
+
+let currentIndex = 0;
+let isNavigating = false;
+
+const NAV_COOLDOWN = 550; // matches the CSS transition duration
+
+const updateSlots = () => {
+
+    const total = posts.length;
+
+    itemEls.forEach((item, index) => {
+
+        const relative = (index - currentIndex + total) % total;
+
+        let slot = "hidden";
+
+        if(relative === 0) slot = "center";
+        else if(relative === 1) slot = "next";
+        else if(relative === total - 1) slot = "prev";
+
+        item.dataset.slot = slot;
+
+    });
+
+};
+
+const goTo = (newIndex) => {
+
+    if(isNavigating) return;
+
+    isNavigating = true;
+
+    currentIndex = (newIndex + posts.length) % posts.length;
+
+    updateSlots();
+
+    setTimeout(() => { isNavigating = false; }, NAV_COOLDOWN);
+
+};
+
+updateSlots();
+
+/* =========================
+   ARROW NAVIGATION
+   Triggers on hover, as requested —
+   click/keyboard also work, for
+   accessibility.
+========================= */
+
+const arrowLeft =
+    document.getElementById("arrowLeft");
+
+const arrowRight =
+    document.getElementById("arrowRight");
+
+arrowLeft.addEventListener("mouseenter", () => goTo(currentIndex - 1));
+arrowLeft.addEventListener("click", () => goTo(currentIndex - 1));
+arrowLeft.addEventListener("focus", () => goTo(currentIndex - 1));
+
+arrowRight.addEventListener("mouseenter", () => goTo(currentIndex + 1));
+arrowRight.addEventListener("click", () => goTo(currentIndex + 1));
+arrowRight.addEventListener("focus", () => goTo(currentIndex + 1));
+
+/* =========================
+   POST CONTENT PANEL
+   Clicking a post centers it AND
+   reveals its content below.
+========================= */
+
+const postContent =
+    document.getElementById("postContent");
+
+const postContentTitle =
+    document.getElementById("postContentTitle");
+
+const postContentImage =
+    document.getElementById("postContentImage");
+
+const postContentText =
+    document.getElementById("postContentText");
+
+const closeContent =
+    document.getElementById("closeContent");
+
+function selectPost(index){
+
+    goTo(index);
+
+    const post = posts[index];
+
+    postContentTitle.textContent = post.title;
+    postContentImage.src = post.contentImage;
+    postContentImage.alt = post.title;
+fetch(post.textFile)
+    .then(response => response.text())
+    .then(data => {
+        postContentText.innerHTML = data;
+    })
+    .catch(error => {
+        console.error("Error loading post:", error);
+        postContentText.textContent = "Unable to load post content.";
+    });
+
+    postContent.classList.add("is-visible");
+
+    postContent.scrollIntoView({ behavior:"smooth", block:"nearest" });
+
+}
+
+closeContent.addEventListener("click", () => {
+
+    postContent.classList.remove("is-visible");
+
+});
+
+
+
+</script>
+
+</body>
+</html>
