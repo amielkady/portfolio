@@ -495,7 +495,7 @@ body{
     width:100%;
 
     background:#b13b76;
-
+opacity: 0.7;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -592,9 +592,9 @@ body{
     <footer class="siteFooter">
 
         <!-- REPLACE href WITH THE REAL DESTINATIONS -->
-        <a href="#">About Me</a>
-        <a href="#">LinkedIn</a>
-        <a href="#">Contact Me</a>
+        <a href="About-Me.html">About Me</a>
+        <a href="https://www.linkedin.com/in/amielkady">LinkedIn</a>
+        <a href="mailto: amiselkady@gmail.com">Contact Me</a>
 
     </footer>
 
@@ -612,30 +612,30 @@ const posts = [
     {
         id:"medical",
         title:"Medical",
-        image:"medical-thumb.jpg",
-        contentImage:"medical-full.jpg",
-        text:"Placeholder text for the Medical blog post — swap this in with your real content."
+        image:"images/medicalimg.png",
+        contentImage:"images/medicalimg.pngmedical-full.jpg",
+        textFile: "posts/medical.html"
     },
     {
         id:"technical-support",
         title:"Technical Support",
-        image:"tech-support-thumb.jpg",
-        contentImage:"tech-support-full.jpg",
-        text:"Placeholder text for the Technical Support blog post — swap this in with your real content."
+          image:"images/techimg.png",
+        contentImage:"images/techimg.png",
+        textFile:"posts/tech-support.html"
     },
     {
         id:"tourism",
         title:"Tourism",
-        image:"tourism-thumb.jpg",
-        contentImage:"tourism-full.jpg",
-        text:"Placeholder text for the Tourism blog post — swap this in with your real content."
+        image:"images/travelimg.png",
+        contentImage:"images/tourismimg.png",
+        textFile:"posts/tourism.html"
     },
     {
         id:"entertainment",
         title:"Entertainment",
-        image:"entertainment-thumb.jpg",
-        contentImage:"entertainment-full.jpg",
-        text:"Placeholder text for the Entertainment blog post — swap this in with your real content."
+        image:"images/entertainmentimg.png",
+        contentImage:"images/entertainmentimg.png",
+        textFile: "posts/entertainment.html"
     }
 ];
 
@@ -774,7 +774,15 @@ function selectPost(index){
     postContentTitle.textContent = post.title;
     postContentImage.src = post.contentImage;
     postContentImage.alt = post.title;
-    postContentText.textContent = post.text;
+fetch(post.textFile)
+    .then(response => response.text())
+    .then(data => {
+        postContentText.innerHTML = data;
+    })
+    .catch(error => {
+        console.error("Error loading post:", error);
+        postContentText.textContent = "Unable to load post content.";
+    });
 
     postContent.classList.add("is-visible");
 
