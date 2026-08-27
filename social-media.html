@@ -501,10 +501,59 @@ body{
     cursor:default;
 
 }
+   
+.siteFooter{
+
+    position:fixed;
+
+    bottom:0;
+    left:0;
+
+    width:100%;
+
+    background:#b13b76;
+opacity: 0.7;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:40px;
+
+    padding:16px 24px;
+
+    z-index:60;
+
+}
+
+.siteFooter a{
+
+    font-family:"Segoe UI", sans-serif;
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:.02em;
+
+    color:#efedee;
+    text-decoration:none;
+
+    transition:opacity .2s ease;
+
+}
+
+.siteFooter a:hover,
+.siteFooter a:focus-visible{
+    opacity:.75;
+}
+
+@media (max-width:520px){
+
+    .siteFooter{ gap:22px; }
+    .siteFooter a{ font-size:13px; }
+
+}
 
 /* =========================
    BACK TO PORTFOLIO
 ========================= */
+
 
 .backToPortfolio{
 
@@ -601,6 +650,14 @@ body{
         </svg>
         <span>Back to Portfolio</span>
     </a>
+   <footer class="siteFooter">
+
+     
+        <a href="About-Me.html">About Me</a>
+        <a href="https://www.linkedin.com/in/amielkady">LinkedIn</a>
+        <a href="mailto: amiselkady@gmail.com">Contact Me</a>
+
+    </footer>
 
 
 
@@ -623,7 +680,7 @@ const posts = [
         type:"multi",
         sections:[
             { label:"Post 1", folder:"Social Media/Nafs/post1", count:7, ext:"png" },
-            { label:"Post 2", folder:"Social Media/Nafs/post2", count:7, ext:"png" },
+            { label:"Post 2", folder:"Social Media/Nafs/post2", count:7, ext:"jpeg" },
             { label:"Post 3", folder:"Social Media/Nafs/post3", count:10, ext:"png" }
         ]
     }
