@@ -500,15 +500,6 @@ body{
 
 }
 
-.igCounter{
-
-    font-family:"Kalam", sans-serif;
-    font-size:14px;
-
-    color:#565254;
-
-}
-
 /* =========================
    BACK TO PORTFOLIO
 ========================= */
@@ -634,7 +625,7 @@ const posts = [
     {
         id:"dinerCarousel",
         title:"Instagram: Diner Carousel",
-        thumb:"/images/Dinerimg.png", // 
+        thumb:"images/Dinerimg.png",
         type:"single",
         folder:"Social Media/Diner",
         count:4,
@@ -643,7 +634,7 @@ const posts = [
     {
         id:"psychiatryCarousel",
         title:"Instagram: Psychiatry Clinic Carousel",
-        thumb:"/images/Dinerimg.png", // REPLACE with a thumbnail image for the top picker
+        thumb:"images/Dinerimg.png", // REPLACE — currently reusing the Diner thumbnail
         type:"multi",
         sections:[
             { label:"Post 1", folder:"Social Media/Nafs/post1", count:7, ext:"png" },
@@ -805,13 +796,9 @@ function buildImageCarousel(folder, count, ext){
     const btnLeft = wrap.querySelector(".igArrowLeft");
     const btnRight = wrap.querySelector(".igArrowRight");
 
-    const counter = document.createElement("div");
-    counter.className = "igCounter";
-
     const render = () => {
 
         img.src = `${folder}/${current}.${ext}`;
-        counter.textContent = `${current} / ${count}`;
 
         btnLeft.disabled = current === 1;
         btnRight.disabled = current === count;
@@ -828,15 +815,7 @@ function buildImageCarousel(folder, count, ext){
 
     render();
 
-    const outer = document.createElement("div");
-    outer.appendChild(wrap);
-    outer.appendChild(counter);
-    outer.style.display = "flex";
-    outer.style.flexDirection = "column";
-    outer.style.alignItems = "center";
-    outer.style.gap = "10px";
-
-    return outer;
+    return wrap;
 
 }
 
@@ -855,7 +834,7 @@ function selectPost(index){
         const block = document.createElement("div");
         block.className = "igBlock";
 
-        block.appendChild(buildImageCarousel(post.folder, post.count));
+        block.appendChild(buildImageCarousel(post.folder, post.count, post.ext));
 
         postContentBody.appendChild(block);
 
@@ -871,7 +850,7 @@ function selectPost(index){
             label.textContent = section.label;
 
             block.appendChild(label);
-            block.appendChild(buildImageCarousel(section.folder, section.count));
+            block.appendChild(buildImageCarousel(section.folder, section.count, section.ext));
 
             postContentBody.appendChild(block);
 
