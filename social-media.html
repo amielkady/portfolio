@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/x-icon" href="images/DuckyFace.png">
-<title>Comms — Amira Elkady's Portfolio</title>
+<title>Social Media — Amira Elkady's Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
 
@@ -14,9 +14,6 @@
 
 /* =========================
    YOUR FONTS
-   Same font files as index.html —
-   this page lives in the same
-   repo root, so the path matches.
 ========================= */
 
 @font-face{
@@ -87,7 +84,7 @@ body{
 }
 
 /* =========================
-   CAROUSEL SECTION
+   CAROUSEL SECTION (top-level: picks which post)
 ========================= */
 
 .carouselSection{
@@ -229,9 +226,7 @@ body{
 }
 
 /* =========================
-   CAROUSEL ARROWS
-   Same glowing technique as the
-   landing page, oriented sideways.
+   CAROUSEL ARROWS (top-level post picker)
 ========================= */
 
 .carouselArrow{
@@ -333,16 +328,14 @@ body{
 
 /* =========================
    POST CONTENT PANEL
-   Revealed underneath the carousel
-   when a post is clicked. Fill in
-   the placeholder text/images later —
-   this just wires the structure.
+   Revealed underneath the top-level
+   carousel when a post is clicked.
 ========================= */
 
 .postContent{
 
     width:100%;
-    max-width:700px;
+    max-width:760px;
 
     margin-top:56px;
     padding:0 24px;
@@ -358,7 +351,7 @@ body{
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:20px;
+    gap:36px;
 
 }
 
@@ -369,29 +362,6 @@ body{
     font-size:clamp(24px, 3.4vw, 34px);
 
     color:#3a3738;
-
-}
-
-.postContent img{
-
-    width:100%;
-    max-width:480px;
-
-    border-radius:16px;
-
-    object-fit:cover;
-
-}
-
-.postContent p{
-
-    font-family:"Kalam", sans-serif;
-    font-size:16px;
-    line-height:1.7;
-
-    color:#565254;
-
-    text-align:left;
 
 }
 
@@ -425,9 +395,122 @@ body{
 }
 
 /* =========================
+   INSTAGRAM-STYLE IMAGE CAROUSEL
+   (nested carousel shown inside the
+   post content panel — one per post,
+   or three for the Psychiatry post)
+========================= */
+
+.igBlock{
+
+    width:100%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+
+}
+
+.igSectionLabel{
+
+    font-family:"Goodfriend", "Caveat", cursive;
+    font-weight:600;
+    font-size:20px;
+
+    color:#3a3738;
+
+}
+
+.igCarousel{
+
+    position:relative;
+
+    width:100%;
+    max-width:420px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+}
+
+.igCarouselFrame{
+
+    position:relative;
+
+    width:100%;
+    aspect-ratio:1/1;
+
+    border-radius:16px;
+    overflow:hidden;
+
+    box-shadow:0 12px 30px rgba(58,55,56,.18);
+
+}
+
+.igCarouselImg{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+.igArrow{
+
+    background:none;
+    border:none;
+
+    cursor:pointer;
+
+    padding:6px;
+    flex:0 0 auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+}
+
+.igArrow svg{
+
+    width:24px;
+    height:24px;
+
+}
+
+.igArrow path{
+
+    stroke:#565254;
+    stroke-width:2.4;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    fill:none;
+
+}
+
+.igArrow:disabled{
+
+    opacity:.25;
+    cursor:default;
+
+}
+
+.igCounter{
+
+    font-family:"Kalam", sans-serif;
+    font-size:14px;
+
+    color:#565254;
+
+}
+
+/* =========================
    BACK TO PORTFOLIO
-   Arrow sits to the left of the
-   text, both inline, not stacked.
 ========================= */
 
 .backToPortfolio{
@@ -480,327 +563,18 @@ body{
 
 }
 
-/* =========================
-   DUCKY CHAT — TRIGGER
-   Small floating icon, bottom right.
-========================= */
-
-.duckyChat{
-
-    position:fixed;
-
-    bottom:28px;
-    right:28px;
-
-    z-index:40;
-
-    transition:opacity .3s ease;
-
-}
-
-.duckyChat.is-hidden{
-
-    opacity:0;
-    pointer-events:none;
-
-}
-
-.duckyChatPrompt{
-
-    position:absolute;
-
-    bottom:100%;
-    right:0;
-
-    margin-bottom:10px;
-
-    white-space:nowrap;
-
-    font-family:"CanvaCrayon", "Kalam", sans-serif;
-    font-size:20px;
-
-    color:#3a3738;
-
-    opacity:0;
-
-    transition:opacity .3s ease;
-
-    pointer-events:none;
-
-}
-
-.duckyChatPrompt.is-visible{ opacity:1; }
-
-/* Same wiggle as funkyLines on the Duckie page,
-   just rotated 180deg so it reads correctly
-   pointing toward the icon from this position. */
-
-.duckyChatLines{
-
-    position:absolute;
-
-    top:-22px;
-    left:-26px;
-
-    width:34px;
-
-    pointer-events:none;
-
-}
-
-.wiggle-slow-flipped{
-
-    animation:wiggleSlowFlipped 4s ease-in-out infinite;
-    transform-origin:center;
-
-}
-
-@keyframes wiggleSlowFlipped{
-
-    0%, 100%{ transform:rotate(176deg); }
-    50%{ transform:rotate(184deg); }
-
-}
-
-.duckyChatIconBtn{
-
-    position:relative;
-
-    background:none;
-    border:none;
-    padding:0;
-
-    cursor:pointer;
-
-    display:block;
-
-}
-
-.duckyChatIcon{
-
-    width:64px;
-    height:auto;
-
-    display:block;
-
-    transition:transform .25s ease;
-
-}
-
-.duckyChatIconBtn:hover .duckyChatIcon{
-    transform:scale(1.08);
-}
-
-@media (prefers-reduced-motion:reduce){
-
-    .wiggle-slow-flipped{ animation:none; }
-
-}
-
-/* =========================
-   DUCKY CHAT — OVERLAY + PANEL
-   Opens on click. Panel takes the
-   right 60% of the viewport; the
-   rest of the page dims and blurs
-   behind it.
-========================= */
-
-.duckyChatOverlay{
-
-    position:fixed;
-    inset:0;
-
-    z-index:50;
-
-    display:flex;
-    justify-content:flex-end;
-
-    opacity:0;
-    visibility:hidden;
-
-    background:rgba(58,55,56,.4);
-
-    backdrop-filter:blur(6px);
-    -webkit-backdrop-filter:blur(6px);
-
-    transition:opacity .35s ease, visibility .35s ease;
-
-}
-
-.duckyChatOverlay.is-open{
-
-    opacity:1;
-    visibility:visible;
-
-}
-
-.duckyChatPanel{
-
-    position:relative;
-
-    width:60vw;
-    max-width:820px;
-    height:100%;
-
-    background:#efedee;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:36px;
-
-    padding:40px;
-
-    transform:translateX(100%);
-
-    transition:transform .4s cubic-bezier(.65,0,.35,1);
-
-    box-shadow:-12px 0 40px rgba(58,55,56,.25);
-
-}
-
-.duckyChatOverlay.is-open .duckyChatPanel{
-    transform:translateX(0);
-}
-
-.duckyChatCloseBtn{
-
-    position:absolute;
-
-    top:24px;
-    left:24px;
-
-    width:40px;
-    height:40px;
-
-    border-radius:50%;
-    border:1px solid #565254;
-
-    background:rgba(239,237,238,.9);
-
-    font-size:20px;
-    line-height:1;
-
-    color:#565254;
-
-    cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    transition:background .25s ease, color .25s ease;
-
-    z-index:2;
-
-}
-
-.duckyChatCloseBtn:hover{
-
-    background:#565254;
-    color:#efedee;
-
-}
-
-.speechBubbles{
-
-    display:flex;
-    flex-direction:column;
-    gap:22px;
-
-    align-items:flex-end;
-
-}
-
-.speechBubble{
-
-    position:relative;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-decoration:none;
-
-    transition:transform .25s ease;
-
-}
-
-.speechBubble:hover,
-.speechBubble:focus-visible{
-    transform:scale(1.08);
-}
-
-.speechBubble img{
-
-    width:190px;
-    display:block;
-
-}
-
-.speechBubble span{
-
-    position:absolute;
-
-    font-family:"CanvaCrayon", "Kalam", sans-serif;
-    font-size:15px;
-
-    color:#3a3738;
-    text-align:center;
-
-    padding:0 22px;
-
-    pointer-events:none;
-
-}
-
-.duckyChatPanelIcon{
-
-    /* This is meant to be DuckyChat.png at its "original"
-       size — adjust to match your actual source PNG's
-       natural proportions. */
-
-    width:150px;
-    height:auto;
-
-}
-
-@media (prefers-reduced-motion:reduce){
-
-    .duckyChatPanel{ transition:none; }
-    .speechBubble{ transition:none; }
-
-}
-
-@media (max-width:760px){
-
-    .duckyChatPanel{
-        width:85vw;
-        flex-direction:column;
-        gap:20px;
-    }
-
-    .speechBubbles{
-        flex-direction:row;
-        align-items:center;
-    }
-
-    .speechBubble img{ width:120px; }
-
-}
-
 </style>
 
 </head>
 
 <body>
 
-    <!-- REPLACE WITH YOUR BLOGPOSTS HEADER IMAGE -->
+    <!-- REPLACE WITH YOUR SOCIAL MEDIA HEADER IMAGE -->
     <img src="Graphics/SocialH1.png" class="commsHeader" alt="SocialMedia">
 
     <section class="carouselSection">
 
-        <button class="carouselArrow carouselArrow--left" id="arrowLeft" aria-label="Previous blog post">
+        <button class="carouselArrow carouselArrow--left" id="arrowLeft" aria-label="Previous post">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 4L7 12L15 20"/>
             </svg>
@@ -813,7 +587,7 @@ body{
                  markup directly. -->
         </div>
 
-        <button class="carouselArrow carouselArrow--right" id="arrowRight" aria-label="Next blog post">
+        <button class="carouselArrow carouselArrow--right" id="arrowRight" aria-label="Next post">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 4L17 12L9 20"/>
             </svg>
@@ -827,10 +601,7 @@ body{
 
         <h2 id="postContentTitle"></h2>
 
-        <!-- REPLACE WITH YOUR SUPPORTING IMAGE PER POST -->
-        <img id="postContentImage" src="" alt="">
-
-        <p id="postContentText"></p>
+        <div id="postContentBody"></div>
 
     </section>
 
@@ -841,42 +612,51 @@ body{
         <span>Back to Portfolio</span>
     </a>
 
-   
-
 
 
 <script>
 
 /* =========================
    POST DATA
-   Edit titles/images/text here —
-   the carousel and content panel
-   both build themselves from this.
+   Edit thumbnails/folders/counts here —
+   everything else builds itself from this.
+
+   type:"single"  -> one image carousel, e.g. Diner
+   type:"multi"   -> several labeled sub-carousels
+                      stacked in one post, e.g. Psychiatry
+
+   IMAGE FILE EXTENSION: each post/section has its own
+   `ext` field below, since file types can differ per
+   folder (Diner is jpg, Psychiatry is png).
 ========================= */
 
 const posts = [
     {
-        id:"commsStrat",
-        title:"HR External Communications Strategy",
-        image:"",
-        contentImage:"",
-        textFile:"" },
-    {
-        id:"holidayGreet",
-        title:"External Communications: Holiday Greeting Card",
-        image:"",
-        contentImage:"",
-        textFile:""
+        id:"dinerCarousel",
+        title:"Instagram: Diner Carousel",
+        thumb:"", // REPLACE with a thumbnail image for the top picker
+        type:"single",
+        folder:"Social Media/Diner",
+        count:4,
+        ext:"jpg"
     },
-
+    {
+        id:"psychiatryCarousel",
+        title:"Instagram: Psychiatry Clinic Carousel",
+        thumb:"", // REPLACE with a thumbnail image for the top picker
+        type:"multi",
+        sections:[
+            { label:"Post 1", folder:"Social Media/Nafs/post1", count:7, ext:"png" },
+            { label:"Post 2", folder:"Social Media/Nafs/post2", count:7, ext:"png" },
+            { label:"Post 3", folder:"Social Media/Nafs/post3", count:10, ext:"png" }
+        ]
+    }
 ];
-
- 
 
 const track =
     document.getElementById("carouselTrack");
 
-/* build one element per post, once */
+/* build one thumbnail element per post, once */
 
 const itemEls = posts.map((post, index) => {
 
@@ -889,7 +669,7 @@ const itemEls = posts.map((post, index) => {
     item.setAttribute("aria-label", post.title);
 
     item.innerHTML = `
-        <img src="${post.image}" alt="${post.title}">
+        <img src="${post.thumb}" alt="${post.title}">
         <span>${post.title}</span>
     `;
 
@@ -913,7 +693,7 @@ const itemEls = posts.map((post, index) => {
 });
 
 /* =========================
-   CAROUSEL STATE
+   TOP-LEVEL CAROUSEL STATE
 ========================= */
 
 let currentIndex = 0;
@@ -958,10 +738,7 @@ const goTo = (newIndex) => {
 updateSlots();
 
 /* =========================
-   ARROW NAVIGATION
-   Triggers on hover, as requested —
-   click/keyboard also work, for
-   accessibility.
+   ARROW NAVIGATION (top-level)
 ========================= */
 
 const arrowLeft =
@@ -980,8 +757,6 @@ arrowRight.addEventListener("focus", () => goTo(currentIndex + 1));
 
 /* =========================
    POST CONTENT PANEL
-   Clicking a post centers it AND
-   reveals its content below.
 ========================= */
 
 const postContent =
@@ -990,14 +765,80 @@ const postContent =
 const postContentTitle =
     document.getElementById("postContentTitle");
 
-const postContentImage =
-    document.getElementById("postContentImage");
-
-const postContentText =
-    document.getElementById("postContentText");
+const postContentBody =
+    document.getElementById("postContentBody");
 
 const closeContent =
     document.getElementById("closeContent");
+
+const arrowSvg = (direction) => {
+
+    const d = direction === "left" ? "M15 4L7 12L15 20" : "M9 4L17 12L9 20";
+
+    return `
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="${d}"/>
+        </svg>
+    `;
+
+};
+
+/* Builds one Instagram-style sub-carousel: arrows + image + counter.
+   folder/count define how many images (1.jpg .. count.jpg) to cycle through. */
+
+function buildImageCarousel(folder, count, ext){
+
+    const wrap = document.createElement("div");
+    wrap.className = "igCarousel";
+
+    let current = 1; // 1-indexed, matches file names
+
+    wrap.innerHTML = `
+        <button class="igArrow igArrowLeft" aria-label="Previous image">${arrowSvg("left")}</button>
+        <div class="igCarouselFrame">
+            <img class="igCarouselImg" src="${folder}/${current}.${ext}" alt="">
+        </div>
+        <button class="igArrow igArrowRight" aria-label="Next image">${arrowSvg("right")}</button>
+    `;
+
+    const img = wrap.querySelector(".igCarouselImg");
+    const btnLeft = wrap.querySelector(".igArrowLeft");
+    const btnRight = wrap.querySelector(".igArrowRight");
+
+    const counter = document.createElement("div");
+    counter.className = "igCounter";
+
+    const render = () => {
+
+        img.src = `${folder}/${current}.${ext}`;
+        counter.textContent = `${current} / ${count}`;
+
+        btnLeft.disabled = current === 1;
+        btnRight.disabled = current === count;
+
+    };
+
+    btnLeft.addEventListener("click", () => {
+        if(current > 1){ current -= 1; render(); }
+    });
+
+    btnRight.addEventListener("click", () => {
+        if(current < count){ current += 1; render(); }
+    });
+
+    render();
+
+    const outer = document.createElement("div");
+    outer.appendChild(wrap);
+    outer.appendChild(counter);
+    outer.style.display = "flex";
+    outer.style.flexDirection = "column";
+    outer.style.alignItems = "center";
+    outer.style.gap = "10px";
+
+    return outer;
+
+}
 
 function selectPost(index){
 
@@ -1006,17 +847,37 @@ function selectPost(index){
     const post = posts[index];
 
     postContentTitle.textContent = post.title;
-    postContentImage.src = post.contentImage;
-    postContentImage.alt = post.title;
-fetch(post.textFile)
-    .then(response => response.text())
-    .then(data => {
-        postContentText.innerHTML = data;
-    })
-    .catch(error => {
-        console.error("Error loading post:", error);
-        postContentText.textContent = "Unable to load post content.";
-    });
+
+    postContentBody.innerHTML = "";
+
+    if(post.type === "single"){
+
+        const block = document.createElement("div");
+        block.className = "igBlock";
+
+        block.appendChild(buildImageCarousel(post.folder, post.count));
+
+        postContentBody.appendChild(block);
+
+    } else if(post.type === "multi"){
+
+        post.sections.forEach((section) => {
+
+            const block = document.createElement("div");
+            block.className = "igBlock";
+
+            const label = document.createElement("div");
+            label.className = "igSectionLabel";
+            label.textContent = section.label;
+
+            block.appendChild(label);
+            block.appendChild(buildImageCarousel(section.folder, section.count));
+
+            postContentBody.appendChild(block);
+
+        });
+
+    }
 
     postContent.classList.add("is-visible");
 
@@ -1029,8 +890,6 @@ closeContent.addEventListener("click", () => {
     postContent.classList.remove("is-visible");
 
 });
-
-
 
 </script>
 
